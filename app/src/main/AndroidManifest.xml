@@ -16,7 +16,27 @@
         android:roundIcon="@mipmap/appicon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".UI.Activities.CartCheckActivity"
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".UI.Activities.CartActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".UI.Activities.ProductInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UI.Activities.CategoryActivity"
+            android:screenOrientation="portrait" />
+
+
+
+        <activity
+            android:name=".UI.Activities.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UI.Activities.SignUpActivity"
             android:theme="@style/AppTheme.FullScreen"
@@ -26,11 +46,16 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".UI.Activities.MainActivity"
-            android:screenOrientation="portrait" />
+            android:name=".UI.Activities.SplashScreenActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".UI.Activities.ProductInfoActivity"
+            android:name=".UI.Activities.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -44,7 +69,5 @@
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
 
     </application>
-
-
 
 </manifest>

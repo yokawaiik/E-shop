@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cartCheckDrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.Activities.CartCheckActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            layout="@layout/buyer_toolbar"
+            android:id="@+id/cartCheckToolbar"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="629dp"
+            android:layout_below="@id/cartCheckToolbar"
+            android:layout_marginTop="46dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginEnd="143dp"
+                android:gravity="center_horizontal"
+                android:text="Order Details"
+                android:textColor="@color/primaryTextColor"
+                android:textColorHighlight="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="180dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/Ttl_ItemsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Price"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/Ttl_ItemsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="TextView"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/Delivary"
+                android:layout_width="78dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Delivery"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Ttl_ItemsTitle" />
+
+            <TextView
+                android:id="@+id/DelivaryPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:text="TextView"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Ttl_ItemsPrice" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="380dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.434"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Delivary" />
+
+            <TextView
+                android:id="@+id/TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Total Amount"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <TextView
+                android:id="@+id/TotalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="TextView"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TextView" />
+
+            <TextView
+                android:id="@+id/SavedAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/saved_money"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+
+            <Button
+                android:id="@+id/Done"
+                android:layout_width="139dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="70dp"
+                android:background="@color/colorAccent"
+                android:text="Order"
+                app:layout_constraintEnd_toStartOf="@+id/Cancel"
+                app:layout_constraintHorizontal_bias="0.231"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SavedAmount"
+                app:layout_goneMarginBottom="80dp" />
+
+
+            <Button
+                android:id="@+id/Cancel"
+                android:layout_width="139dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="36dp"
+                android:background="@color/colorPrimary"
+                android:text="Cancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/SavedAmount"
+                app:layout_goneMarginBottom="80dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/cartCheckNavigationViewer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FFF7DA"
+        app:headerLayout="@layout/navigation_drawer_header"
+        app:itemIconTint="#000"
+        app:itemTextColor="#A30000"
+        app:menu="@menu/main_menu"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>
