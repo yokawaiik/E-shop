@@ -1,3 +1,60 @@
 <resources>
     <string name="app_name">E-shop</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+    <string name="logout">Logout</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="favorites">Favorites</string>
+    <string name="cart">Cart</string>
+    <string name="my_orders">My Orders</string>
+
+    <string name="choose_image">Choose Image</string>
+    <string name="add">Add</string>
+    <string name="view_all">View all</string>
+    <string name="done">Done</string>
+    <string name="closer_to_you">E-shop</string>
+    <string name="saved_money">You Saved 1000 $</string>
+    <string name="button_choose_image">Choose Image</string>
+    <string name="button_done">Done</string>
+    <string name="textview_offer_description">Offer Description</string>
+    <string name="textview_offer_name">Offer Name</string>
+    <string name="textview_product_name">Product Name</string>
+    <string name="textview_product_quantity">Product Quantity</string>
+    <string name="textview_product_price">Product Price</string>
+    <string name="textview_product_expiration_date">Product Expiration date</string>
+    <string name="textview_salesman_name">SalesMan Name</string>
+    <string name="textview_salesman_salary">SalesMan Salary</string>
+    <string name="textview_done">Done</string>
+    <string name="textview_choose_image">Choose Image</string>
+    <string name="button_send_password_to_email">Send Password To Email</string>
+    <string name="EditText_please_enter_your_username_or_email">Please Enter Your Username Or Email</string>
+    <string name="ButtonText_add_to_cart">Add To Cart</string>
+    <string name="TextView_sign_up">Sign up</string>
+    <string name="TextView_text_email">Email</string>
+    <string name="TextView_text_username">Username</string>
+    <string name="TextView_text_password">Password</string>
+    <string name="TextView_text_retype_password">Retype Password</string>
+    <string name="TextView_text_phone_number">Phone Number</string>
+    <string name="TextView_text_sign_up">Sign up</string>
+    <string name="TextView_text_have_account_sign_in">have account? Sign In</string>
+    <string name="Button_text_confirm">Confirm</string>
+    <string name="Button_text_clear">Clear</string>
+    <string name="TextView_totalPrice_text">2000 $</string>
+    <string name="TextView_text_totalPiceTitle">Total Price</string>
+    <string name="TextView_text_delete_from_my_cart">Delete From my Cart</string>
+    <string name="TextView_product_title_text">Product</string>
+    <string name="TextView_coupon_text">Free Coupon</string>
+    <string name="TextView_price_text">2000 $</string>
+    <string name="TextView_cut_price_text">3000 $</string>
+    <string name="TextView_offer_text">Offer Applied</string>
+    <string name="TextView_couponApplied_text">Coupon Applied</string>
+
+    <string-array name="productstypes">
+        <item>Fruits</item>
+        <item>Vegetables</item>
+        <item>Meats</item>
+        <item>Electronics</item>
+    </string-array>
+
 </resources>
