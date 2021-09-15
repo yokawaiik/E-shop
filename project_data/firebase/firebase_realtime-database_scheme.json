@@ -1,0 +1,248 @@
+{
+  "cart" : {
+    "BsDSKnZqorhy9PoVPwgF64Qd3U02" : {
+      "Cucumber, 1 kg" : {
+        "productImage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FCucumber%2C%201%20kg.jpg?alt=media&token=ee171abd-d8ed-4e66-9b54-0d75dfe02395",
+        "productPrice" : "100",
+        "quantity" : "1"
+      },
+      "Iphone 12" : {
+        "productImage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FIphone%2012?alt=media&token=e9c57ca7-cd6a-42ca-87cc-824e854261bd",
+        "productPrice" : "60000",
+        "quantity" : "1"
+      },
+      "totalPrice" : "60100"
+    },
+    "flnyMyoAPfhChjUdn8my2KMUKmw1" : {
+      "totalPrice" : "0"
+    }
+  },
+  "favourites" : {
+    "BsDSKnZqorhy9PoVPwgF64Qd3U02" : {
+      "Apples" : {
+        "checked" : true,
+        "expiredDate" : "10 days",
+        "productimage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FApples.jpg?alt=media&token=8c0b3f27-6c48-4254-945c-f35c7cff70e5",
+        "productprice" : "100",
+        "producttitle" : "Apples"
+      },
+      "Banana, 1 kg" : {
+        "checked" : true,
+        "expiredDate" : "5 days",
+        "productimage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FBanana%2C%201%20kg.jpg?alt=media&token=d0fb99c8-221c-4255-be42-db8952cb23e5",
+        "productprice" : "100",
+        "producttitle" : "Banana, 1 kg"
+      },
+      "Cucumber, 1 kg" : {
+        "checked" : true,
+        "expiredDate" : "6 days",
+        "productimage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FCucumber%2C%201%20kg.jpg?alt=media&token=ee171abd-d8ed-4e66-9b54-0d75dfe02395",
+        "productprice" : "100",
+        "producttitle" : "Cucumber, 1 kg"
+      },
+      "Grapes, 1 kg" : {
+        "checked" : true,
+        "expiredDate" : "5 days",
+        "productimage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FGrapes%2C%201%20kg.jpg?alt=media&token=6da1594a-d931-43bc-9aa8-0ca9649b50a8",
+        "productprice" : "150",
+        "producttitle" : "Grapes, 1 kg"
+      },
+      "Oranges" : {
+        "checked" : true,
+        "expiredDate" : "7 days",
+        "productimage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FOranges.jpg?alt=media&token=714ac4f3-5469-4c79-a266-37f07a12dc03",
+        "productprice" : "200",
+        "producttitle" : "Oranges"
+      }
+    }
+  },
+  "offers" : {
+    "1 banana = 1 tomato free" : {
+      "describtion" : "Buy 1 banana and get 1 tomato free",
+      "img" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/offers%2F1%20banana%20%3D%201%20tomato%20free.jpg?alt=media&token=0918ad7c-698f-4b78-86c1-2a852c0262fc"
+    },
+    "50% free apples" : {
+      "describtion" : "buy 2 kg potatoes and we get you every kg apples on 50% cheap",
+      "img" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/offers%2F50%25%20free%20apples.jpg?alt=media&token=0372dac0-2694-4b54-acf0-3d5e0789cfec"
+    }
+  },
+  "order" : {
+    "BsDSKnZqorhy9PoVPwgF64Qd3U02" : {
+      "-MjXNIgQ2PlYyQ8ZJdvJ" : {
+        "Date" : "14 Sep 2021 03:37 AM",
+        "IsChecked" : "false",
+        "orderproducts" : {
+          "notebook" : {
+            "productImage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2Fnotebook.jpg?alt=media&token=ede7d9b3-796a-4699-8276-359f043d60da",
+            "productPrice" : "25000",
+            "quantity" : "1"
+          }
+        },
+        "totalPrice" : "25000"
+      },
+      "-MjXk30g7E_3kuKbCdw5" : {
+        "Date" : "14 Sep 2021 05:20 AM",
+        "IsChecked" : "false",
+        "orderproducts" : {
+          "notebook" : {
+            "productImage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2Fnotebook.jpg?alt=media&token=ede7d9b3-796a-4699-8276-359f043d60da",
+            "productPrice" : "25000",
+            "quantity" : "1"
+          }
+        },
+        "totalPrice" : "25000"
+      }
+    },
+    "flnyMyoAPfhChjUdn8my2KMUKmw1" : {
+      "-MjPHdw4YqkU7GWmxLN5" : {
+        "Date" : "12 Sep 2021 01:55 PM",
+        "IsChecked" : "false",
+        "orderproducts" : {
+          "notebook" : {
+            "productImage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2Fnotebook.jpg?alt=media&token=ede7d9b3-796a-4699-8276-359f043d60da",
+            "productPrice" : "25000",
+            "quantity" : "1"
+          }
+        },
+        "totalPrice" : "25000"
+      },
+      "-MjZHUMNKPsxCS-EYZ74" : {
+        "Date" : "14 Sep 2021 12:30 PM",
+        "IsChecked" : "false",
+        "orderproducts" : {
+          "chiken" : {
+            "productImage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2Fchiken.jpg?alt=media&token=9f9358bb-38f1-40fa-af1e-11c29b0064ff",
+            "productPrice" : "250",
+            "quantity" : "4"
+          }
+        },
+        "totalPrice" : "1000"
+      }
+    }
+  },
+  "product" : {
+    "Electronics" : {
+      "Google Pixel 6" : {
+        "expired" : "none",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FGoogle%20Pixel%206.jpg?alt=media&token=03ca53c3-e057-477e-9288-9959be6fb5e6",
+        "price" : "70000",
+        "quantity" : "1"
+      },
+      "Iphone 12" : {
+        "expired" : "none",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FIphone%2012?alt=media&token=e9c57ca7-cd6a-42ca-87cc-824e854261bd",
+        "price" : "60000",
+        "quantity" : "1"
+      },
+      "Notebook" : {
+        "expired" : "none",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FNotebook.jpg?alt=media&token=01afd8a6-f8a7-4eaf-9c98-d588f4f8cec6",
+        "price" : "25000",
+        "quantity" : "1"
+      },
+      "Usb type-C" : {
+        "expired" : "none",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FUsb%20type-C?alt=media&token=f2c4aecb-84c4-459d-8e98-0a3e2bbc38a4",
+        "price" : "1000",
+        "quantity" : "1"
+      }
+    },
+    "Fruits" : {
+      "Apples" : {
+        "expired" : "10 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FApples.jpg?alt=media&token=8c0b3f27-6c48-4254-945c-f35c7cff70e5",
+        "price" : "100",
+        "quantity" : "1"
+      },
+      "Banana, 1 kg" : {
+        "expired" : "5 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FBanana%2C%201%20kg.jpg?alt=media&token=d0fb99c8-221c-4255-be42-db8952cb23e5",
+        "price" : "100",
+        "quantity" : "1"
+      },
+      "Grapes, 1 kg" : {
+        "expired" : "5 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FGrapes%2C%201%20kg.jpg?alt=media&token=6da1594a-d931-43bc-9aa8-0ca9649b50a8",
+        "price" : "150",
+        "quantity" : "1"
+      },
+      "Oranges" : {
+        "expired" : "7 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FOranges.jpg?alt=media&token=714ac4f3-5469-4c79-a266-37f07a12dc03",
+        "price" : "200",
+        "quantity" : "1"
+      }
+    },
+    "Meats" : {
+      "Bacon fried, 1 kg" : {
+        "expired" : "2 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FBacon%20fried%2C%201%20kg?alt=media&token=8d9a0ca4-f509-4bfe-ab20-1a3719671136",
+        "price" : "2000",
+        "quantity" : "1"
+      },
+      "Beef bake and fried, 1 kg" : {
+        "expired" : "2 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FBeef%20bake%20and%20fried%2C%201%20kg?alt=media&token=a7e9384b-41b0-4e3e-befa-410536ac6db4",
+        "price" : "2500",
+        "quantity" : "1"
+      },
+      "Chiken" : {
+        "expired" : "3 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FChiken.jpg?alt=media&token=af47f6b5-6baa-473b-a0a9-9cf1458fed25",
+        "price" : "250",
+        "quantity" : "1"
+      },
+      "Pork fresh, 1 kg" : {
+        "expired" : "4 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FPork%20fresh%2C%201%20kg.jpg?alt=media&token=7567eaf3-a3ba-40e2-83de-2f1a1826e59d",
+        "price" : "400",
+        "quantity" : "1"
+      }
+    },
+    "Vegetables" : {
+      "Cucumber, 1 kg" : {
+        "expired" : "6 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FCucumber%2C%201%20kg.jpg?alt=media&token=ee171abd-d8ed-4e66-9b54-0d75dfe02395",
+        "price" : "100",
+        "quantity" : "1"
+      },
+      "Potatoes" : {
+        "expired" : "14 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FPotatoes.jpg?alt=media&token=c20f9f6e-c00f-4f6e-8056-a2786fac4728",
+        "price" : "50",
+        "quantity" : "1"
+      },
+      "Tomato, 1 kg" : {
+        "expired" : "7 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FTomato%2C%201%20kg.jpg?alt=media&token=fe3fcc47-17dd-471d-81ce-0384fa7a21b8",
+        "price" : "120",
+        "quantity" : "1"
+      },
+      "Zuccini bake, 1 kg" : {
+        "expired" : "2 days",
+        "image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/products%2FZuccini%20bake%2C%201%20kg.jpg?alt=media&token=f0e761f3-6fa2-4f9c-aade-b1e0c69451bd",
+        "price" : "200",
+        "quantity" : "1"
+      }
+    }
+  },
+  "salesman" : {
+    "Artem" : {
+      "img" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/salesman%2FArtem.jpg?alt=media&token=7e13e033-a25e-43c5-b260-9f4258d65c56",
+      "qrimage" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/salesman%2FArtemqr.jpg?alt=media&token=068c898c-6fb3-4518-900f-13ef36e9dd7b",
+      "salary" : "200"
+    }
+  },
+  "users" : {
+    "BsDSKnZqorhy9PoVPwgF64Qd3U02" : {
+      "Image" : "default",
+      "Name" : "User Test",
+      "Phone" : "89233333333"
+    },
+    "flnyMyoAPfhChjUdn8my2KMUKmw1" : {
+      "Image" : "https://firebasestorage.googleapis.com/v0/b/e-commerce-d5c27.appspot.com/o/users_image%2FflnyMyoAPfhChjUdn8my2KMUKmw1jpg?alt=media&token=70620b62-48b8-495c-868e-9032ad4d9c04",
+      "Name" : "mahoro",
+      "Phone" : "89233333333"
+    }
+  }
+}
