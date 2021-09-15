@@ -55,25 +55,25 @@
 
 ## Скриншоты приложения
 
-| Иконка приложения | Экран входа | Аутентификация |
-|--|--|--|
-|  |  |  |
+| Иконка приложения  | Аутентификация |
+|--|--|
+|![Иконка приложения](./project_data/screenshots/user/1.png) | ![Аутентификация](./project_data/screenshots/user/3.png) |
 
 | Авторизация | Восстановление | Главный экран |
 |--|--|--|
-|  |  |  |
+| ![Авторизация](./project_data/screenshots/user/2.png) | ![Восстановление](./project_data/screenshots/user/4.png) | ![Главный экран](./project_data/screenshots/user/5.png) |
 
 | Меню | Категория товаров | Детали товара |
 |--|--|--|
-|  |  |  |
+| ![Меню](./project_data/screenshots/user/6.png) | ![Категория товаров](./project_data/screenshots/user/7.png) | ![Детали товара](./project_data/screenshots/user/8.png) |
 
 | Детали товара (добавить в корзину) | Детали товара (товар в корзине) | Профиль пользователя |
 |--|--|--|
-|  |  |  |
+| ![Детали товара (добавить в корзину)](./project_data/screenshots/user/9.png) | ![Детали товара (товар в корзине)](./project_data/screenshots/user/10.png) | ![Профиль пользователя](./project_data/screenshots/user/12.png) |
 
 | Любимые товары | Подтверждение заказа | История заказов |
 |--|--|--|
-|  |  |  |
+| ![Любимые товары](./project_data/screenshots/user/14.png) | ![Подтверждение заказа](./project_data/screenshots/user/11.png) | ![История заказов](./project_data/screenshots/user/13.png) 
 
 ## Установка проекта
 1. Клонировать проект;
