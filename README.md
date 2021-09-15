@@ -108,12 +108,14 @@ Email/Password
 ### Скриншоты схемы данных в Firebase
 | Authentication sign-in-method | Authentication users |
 |--|--|
-|  |  |
+| ![Authentication sign-in-method](./project_data/firebase/firebase_screenshots/authentication_sign-in-method.jpg) | ![Authentication users](./project_data/firebase/firebase_screenshots/authentication_users.jpg) |
 
 | Realtime Database | Realtime Database rules |
 |--|--|
-|  |  |
+| ![Realtime Database](./project_data/firebase/firebase_screenshots/rd.jpg) | ![Realtime Database rules](./project_data/firebase/firebase_screenshots/rd_r.jpg) |
 
 | Storage | Storage rules |
 |--|--|
-|  |  |
+| ![Storage](./project_data/firebase/firebase_screenshots/storage.jpg) | ![Storage rules](./project_data/firebase/firebase_screenshots/storage_rules.jpg) |
+
+
