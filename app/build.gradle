@@ -35,7 +35,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.daimajia.androidanimations:library:2.4@aar'
-
     // firebase
     implementation 'com.google.firebase:firebase-auth:19.4.0'
     implementation 'com.google.firebase:firebase-database:19.4.0'
@@ -45,13 +44,8 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
 
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
-
-    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
     implementation 'com.google.zxing:core:3.3.2'
-
-    implementation 'com.budiyev.android:code-scanner:2.1.0'
     implementation 'com.karumi:dexter:6.0.0'
-
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     //image cropper
@@ -67,5 +61,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
 }
