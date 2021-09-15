@@ -119,3 +119,10 @@ Email/Password
 | ![Storage](./project_data/firebase/firebase_screenshots/storage.jpg) | ![Storage rules](./project_data/firebase/firebase_screenshots/storage_rules.jpg) |
 
 
+## Лицензия
+
+MIT
+
+## Автор
+
+Danil Shubin
