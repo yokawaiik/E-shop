@@ -3,14 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_cart.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_cart_check.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_category.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_favourites_activity.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_forget_password.xml" value="0.15925925925925927" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_login.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_order.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_product_info.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_sign_up.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_splash_screen.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/activity_user_profile.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/buyer_toolbar.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/cart_item_layout.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/category_products_list.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/favourite_recycler_view.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/fragment_my_cart.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/fragment_offer.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/fragment_order.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/grid_product_layout.xml" value="0.23385416666666667" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/horizontal_item.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/navigation_drawer_header.xml" value="0.21574074074074073" />
+        <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/layout/order_item_layout.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/menu/main_menu.xml" value="0.21574074074074073" />
         <entry key="..\:/PRGRM/ANDROID/LEARN_PROJECT/e_shop/app/src/main/res/mipmap-anydpi-v26/appicon.xml" value="0.11203703703703703" />
       </map>

@@ -197,11 +197,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/main_menu"
+        android:background="@color/primaryLightColor"
         app:headerLayout="@layout/navigation_drawer_header"
-        android:background="#FFF7DA"
         app:itemIconTint="#000"
-        app:itemTextColor="#A30000"/>
+        app:itemTextColor="@color/primaryTextColor"
+        app:menu="@menu/main_menu" />
 
     <RelativeLayout
         android:id="@+id/cartButtons"

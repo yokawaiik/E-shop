@@ -187,10 +187,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#FFF7DA"
+        android:background="@color/primaryLightColor"
         app:headerLayout="@layout/navigation_drawer_header"
         app:itemIconTint="#000"
-        app:itemTextColor="#A30000"
-        app:menu="@menu/main_menu"/>
+        app:itemTextColor="@color/primaryTextColor"
+        app:menu="@menu/main_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

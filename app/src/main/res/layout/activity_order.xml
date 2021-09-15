@@ -3,31 +3,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/CategoryDrawer"
+    android:id="@+id/OrderDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="e_shop.UI.Activities.CategoryActivity">
+    tools:context=".UI.Activities.OrderActivity">
 
     <RelativeLayout
-        android:id="@+id/Body"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+    <include
+        layout="@layout/buyer_toolbar"
+        android:id="@+id/OrderToolbar"/>
 
-        <include layout="@layout/buyer_toolbar"
-            android:id="@+id/CategoryTooBar"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/OrderToolbar">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/CategoryRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/CategoryTooBar"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf ="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/Orderframe"/>
+
+     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/CategoryNavigation"
+        android:id="@+id/OrderNavigationViewer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -36,5 +43,6 @@
         app:itemIconTint="#000"
         app:itemTextColor="@color/primaryTextColor"
         app:menu="@menu/main_menu" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

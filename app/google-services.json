@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "860289870807",
+    "firebase_url": "https://e-commerce-d5c27-default-rtdb.firebaseio.com",
+    "project_id": "e-commerce-d5c27",
+    "storage_bucket": "e-commerce-d5c27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860289870807:android:cd511955eb44b27b59b992",
+        "android_client_info": {
+          "package_name": "com.YoKawaiiK.e_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860289870807-2mhvmla3p4at6dubtsb3v72gqi881ef3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqnMw25Ceqdi6FEw8gcog2E9S76r8idgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860289870807-2mhvmla3p4at6dubtsb3v72gqi881ef3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

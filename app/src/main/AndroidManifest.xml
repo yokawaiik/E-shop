@@ -19,12 +19,17 @@
         <activity
             android:name=".UI.Activities.CartCheckActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".UI.Activities.OrderActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UI.Activities.CartActivity"
             android:screenOrientation="portrait" />
 
 
+        <activity
+            android:name=".UI.Activities.FavouritesActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UI.Activities.ProductInfoActivity"
             android:screenOrientation="portrait" />
@@ -33,7 +38,9 @@
             android:screenOrientation="portrait" />
 
 
-
+        <activity
+            android:name=".UI.Activities.UserProfileActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UI.Activities.ForgetPasswordActivity"
             android:screenOrientation="portrait" />
@@ -47,7 +54,9 @@
 
         <activity
             android:name=".UI.Activities.SplashScreenActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,9 +71,6 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
 
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
 
