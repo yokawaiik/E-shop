@@ -72,6 +72,20 @@
             android:theme="@style/Base.Theme.AppCompat" />
 
 
+        <activity
+            android:name=".UI.Activities.AdminActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".UI.Activities.AdminAddProductActivity"
+            android:parentActivityName="UI.Activities.AdminActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UI.Activities.AdminAddOfferActivity"
+            android:parentActivityName="UI.Activities.AdminActivity"
+            android:screenOrientation="portrait" />
+
+
         <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
 
     </application>
