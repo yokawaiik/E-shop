@@ -135,7 +135,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
         TextView gridlayouttitle = mylayout.findViewById(R.id.grid_product_layout_textview);
-        gridlayouttitle.setText("Electronics");
+//        gridlayouttitle.setText("Electronics");
+        gridlayouttitle.setText(R.string.electronics);
         Button GridLayoutViewBtn = mylayout.findViewById(R.id.grid_button_layout_viewall_button);
         final GridView gv = mylayout.findViewById(R.id.product_layout_gridview);
         final List<HorizontalProductModel> lastmodels = new ArrayList<>();
@@ -200,7 +201,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
         TextView gridlayouttitle = mylayout.findViewById(R.id.grid_product_layout_textview);
-        gridlayouttitle.setText("Fruits");
+//        gridlayouttitle.setText("Fruits");
+        gridlayouttitle.setText(R.string.fruits);
         Button GridLayoutViewBtn = mylayout.findViewById(R.id.grid_button_layout_viewall_button);
         final GridView gv = mylayout.findViewById(R.id.product_layout_gridview);
         final List<HorizontalProductModel> lastmodels = new ArrayList<>();
@@ -245,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
         TextView gridlayouttitle = mylayout.findViewById(R.id.grid_product_layout_textview);
-        gridlayouttitle.setText("Meats");
+        gridlayouttitle.setText(R.string.meats);
         Button GridLayoutViewBtn = mylayout.findViewById(R.id.grid_button_layout_viewall_button);
         final GridView gv = mylayout.findViewById(R.id.product_layout_gridview);
         final List<HorizontalProductModel> lastmodels = new ArrayList<>();
@@ -287,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
         TextView gridlayouttitle = mylayout.findViewById(R.id.grid_product_layout_textview);
-        gridlayouttitle.setText("Vegetables");
+        gridlayouttitle.setText(R.string.vegetables);
         Button GridLayoutViewBtn = mylayout.findViewById(R.id.grid_button_layout_viewall_button);
         final GridView gv = mylayout.findViewById(R.id.product_layout_gridview);
         final List<HorizontalProductModel> lastmodels = new ArrayList<>();
@@ -403,8 +405,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void CheckLogout(){
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(MainActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//        checkAlert.setMessage("Do you want to Logout?")
+        checkAlert.setMessage(R.string.message_do_you_want_to_logout)
+                .setCancelable(false).setPositiveButton(R.string.message_button_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
@@ -412,7 +415,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.message_button_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -420,7 +423,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(R.string.alert_dialog__logout);
         alert.show();
 
     }

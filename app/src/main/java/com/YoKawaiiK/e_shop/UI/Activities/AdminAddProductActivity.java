@@ -63,7 +63,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
         //tool bar
         mToolBar = (Toolbar)findViewById(R.id.AddProduct_ToolBar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Add Product");
+        getSupportActionBar().setTitle(R.string.admin_add_product_activity__add_product);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = (TextInputEditText) findViewById(R.id.editTextProductName);
@@ -103,7 +103,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 if (name.getText().toString().trim().isEmpty()) {
                     nameLayout.setErrorEnabled(true);
-                    nameLayout.setError("Please Enter Offer Name");
+                    nameLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     nameLayout.setErrorEnabled(false);
                 }
@@ -120,7 +120,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (name.getText().toString().trim().isEmpty()) {
                     nameLayout.setErrorEnabled(true);
-                    nameLayout.setError("Please Enter Offer Name");
+                    nameLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     nameLayout.setErrorEnabled(false);
                 }
@@ -137,7 +137,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 if (quantity.getText().toString().trim().isEmpty()) {
                     quantityLayout.setErrorEnabled(true);
-                    quantityLayout.setError("Please Enter Offer Name");
+                    quantityLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     quantityLayout.setErrorEnabled(false);
                 }
@@ -154,7 +154,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (quantity.getText().toString().trim().isEmpty()) {
                     quantityLayout.setErrorEnabled(true);
-                    quantityLayout.setError("Please Enter Offer Name");
+                    quantityLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     quantityLayout.setErrorEnabled(false);
                 }
@@ -171,7 +171,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 if (price.getText().toString().trim().isEmpty()) {
                     priceLayout.setErrorEnabled(true);
-                    priceLayout.setError("Please Enter Offer Name");
+                    priceLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     priceLayout.setErrorEnabled(false);
                 }
@@ -188,7 +188,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (price.getText().toString().trim().isEmpty()) {
                     priceLayout.setErrorEnabled(true);
-                    priceLayout.setError("Please Enter Offer Name");
+                    priceLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     priceLayout.setErrorEnabled(false);
                 }
@@ -205,7 +205,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
                 if (expDate.getText().toString().trim().isEmpty()) {
                     expDateLayout.setErrorEnabled(true);
-                    expDateLayout.setError("Please Enter Offer Name");
+                    expDateLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     expDateLayout.setErrorEnabled(false);
                 }
@@ -222,7 +222,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (expDate.getText().toString().trim().isEmpty()) {
                     expDateLayout.setErrorEnabled(true);
-                    expDateLayout.setError("Please Enter Offer Name");
+                    expDateLayout.setError(getString(R.string.error__please_enter_offer_name));
                 } else {
                     expDateLayout.setErrorEnabled(false);
                 }
@@ -246,13 +246,13 @@ public class AdminAddProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (mUploadTask != null && mUploadTask.isInProgress())
-                    Toast.makeText(AdminAddProductActivity.this, "Upload Is In Progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddProductActivity.this, getString(R.string.admin_add_product_activity__upload_is_in_progress), Toast.LENGTH_SHORT).show();
                 else if (name.getText().toString().isEmpty() || quantity.getText().toString().isEmpty() || price.getText().toString().isEmpty() || expDate.getText().toString().isEmpty() || imgUri == null){
-                    Toast.makeText(AdminAddProductActivity.this, "Empty Cells", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddProductActivity.this, getString(R.string.admin_add_product_activity__empty_cells), Toast.LENGTH_SHORT).show();
                 }
                 else{
                     uploadData();
-                    Toast.makeText(AdminAddProductActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddProductActivity.this, getString(R.string.admin_add_product_activity__upload_succesfully), Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
@@ -269,7 +269,7 @@ public class AdminAddProductActivity extends AppCompatActivity {
 
     public void uploadData() {
         if (name.getText().toString().isEmpty() || quantity.getText().toString().isEmpty() || price.getText().toString().isEmpty() || expDate.getText().toString().isEmpty() || imgUri == null) {
-            Toast.makeText(AdminAddProductActivity.this, "Empty Cells", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdminAddProductActivity.this, getString(R.string.admin_add_product_activity__empty_cells), Toast.LENGTH_SHORT).show();
         } else {
             uploadImage();
         }

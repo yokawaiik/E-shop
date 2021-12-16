@@ -41,7 +41,8 @@ public class AdminActivity extends AppCompatActivity {
         //tool bar
         mToolBar = (Toolbar)findViewById(R.id.Admin_ToolBar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Admin Control");
+//        getSupportActionBar().setTitle("Admin Control");
+        getSupportActionBar().setTitle(R.string.admin_activity__admin_control);
 
         FragmentTitle =(TextView)findViewById(R.id.FragmentTitle);
         bottomNavigationView= (BottomNavigationView)findViewById(R.id.Bottom_view);
@@ -49,7 +50,8 @@ public class AdminActivity extends AppCompatActivity {
 
         //default fragment is product (awl ma y sign in go to products fragment)
         getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout,new ProductsFragment()).commit();
-        FragmentTitle.setText("All Products");
+//        FragmentTitle.setText("All Products");
+        FragmentTitle.setText(R.string.admin_activity__all_products);
 
 
     }
@@ -70,11 +72,13 @@ public class AdminActivity extends AppCompatActivity {
                     int id = item.getItemId();
                     if(id== R.id.ProductID){
                         SelectedFragment = new ProductsFragment();
-                        FragmentTitle.setText("All Products");
+//                        FragmentTitle.setText("All Products");
+                        FragmentTitle.setText(R.string.admin_activity__all_products);
                     }
                     else if(id== R.id.OffersID){
                         SelectedFragment = new OffersFragment();
-                        FragmentTitle.setText("All Offers");
+//                        FragmentTitle.setText("All Offers");
+                        FragmentTitle.setText(R.string.admin_activity__all_offers);
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout,SelectedFragment).commit();
@@ -103,8 +107,8 @@ public class AdminActivity extends AppCompatActivity {
 
     private void CheckLogout(){
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(AdminActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        checkAlert.setMessage(R.string.message_do_you_want_to_logout)
+                .setCancelable(false).setPositiveButton(R.string.message_button_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mAuth.signOut();
@@ -112,7 +116,7 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.message_button_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -120,7 +124,7 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(R.string.alert_dialog__logout);
         alert.show();
 
     }

@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="Offer Name"
+                android:hint="@string/aao_offer_name"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:hint="Offer Description"
+                android:hint="@string/aao_offer_description"
                 android:inputType="textMultiLine"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
@@ -96,7 +96,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="32dp"
-            android:text="Add"
+            android:text="@string/aao_add"
             android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -109,7 +109,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:background="@color/colorPrimary"
-            android:text="Choose Image"
+            android:text="@string/aao_choose_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

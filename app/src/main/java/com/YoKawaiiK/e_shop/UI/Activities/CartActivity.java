@@ -52,7 +52,8 @@ public class CartActivity extends AppCompatActivity implements NavigationView.On
 
         mToolbar = (Toolbar)findViewById(R.id.cartToolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("My Cart");
+//        getSupportActionBar().setTitle("My Cart");
+        getSupportActionBar().setTitle(R.string.cart_activity__my_cart);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.Cartframe,new MyCartFragment()).commit();
@@ -161,8 +162,8 @@ public class CartActivity extends AppCompatActivity implements NavigationView.On
 
     private void CheckLogout(){
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(CartActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        checkAlert.setMessage(R.string.message_do_you_want_to_logout)
+                .setCancelable(false).setPositiveButton(R.string.message_button_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
@@ -170,7 +171,7 @@ public class CartActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.message_button_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -178,7 +179,7 @@ public class CartActivity extends AppCompatActivity implements NavigationView.On
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(R.string.alert_dialog__logout);
         alert.show();
 
     }

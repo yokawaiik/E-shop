@@ -59,7 +59,8 @@ public class AdminAddOfferActivity extends AppCompatActivity {
         //tool bar
         mToolBar = (Toolbar)findViewById(R.id.AddOffer_ToolBar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Add Offer");
+//        getSupportActionBar().setTitle("Add Offer");
+        getSupportActionBar().setTitle(R.string.admin_add_offer_activity__add_offer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = findViewById(R.id.editTextOfferName);
@@ -78,7 +79,8 @@ public class AdminAddOfferActivity extends AppCompatActivity {
                 if(name.getText().toString().trim().isEmpty())
                 {
                     nameTextInputLayout.setErrorEnabled(true);
-                    nameTextInputLayout.setError("Please Enter Offer Name");
+                    nameTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
+//                    nameTextInputLayout.setError(R.string.error__please_enter_offer_name);
                 }
                 else
                 {
@@ -93,7 +95,8 @@ public class AdminAddOfferActivity extends AppCompatActivity {
                 if(description.getText().toString().trim().isEmpty())
                 {
                     descTextInputLayout.setErrorEnabled(true);
-                    descTextInputLayout.setError("Please Enter Offer Name");
+
+                    descTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
                 }
                 else
                 {
@@ -113,7 +116,7 @@ public class AdminAddOfferActivity extends AppCompatActivity {
                 if(name.getText().toString().trim().isEmpty())
                 {
                     nameTextInputLayout.setErrorEnabled(true);
-                    nameTextInputLayout.setError("Please Enter Offer Name");
+                    nameTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
                 }
                 else
                 {
@@ -138,7 +141,7 @@ public class AdminAddOfferActivity extends AppCompatActivity {
                 if(description.getText().toString().trim().isEmpty())
                 {
                     descTextInputLayout.setErrorEnabled(true);
-                    descTextInputLayout.setError("Please Enter Offer Name");
+                    descTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
                 }
                 else
                 {
@@ -157,16 +160,16 @@ public class AdminAddOfferActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(mUploadTask != null && mUploadTask.isInProgress())
-                    Toast.makeText(AdminAddOfferActivity.this, "Upload Is In Progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__upload_is_in_progress), Toast.LENGTH_SHORT).show();
                 else if(name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || imgUri == null)
                 {
-                    Toast.makeText(AdminAddOfferActivity.this, "Empty Cells", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__empty_cells), Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     try {
                         uploadData();
-                        Toast.makeText(AdminAddOfferActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__added_successfully), Toast.LENGTH_SHORT).show();
                         finish();
                     }catch (Exception e)
                     {
@@ -198,7 +201,7 @@ public class AdminAddOfferActivity extends AppCompatActivity {
     {
         if(name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || imgUri == null)
         {
-            Toast.makeText(AdminAddOfferActivity.this, "Empty Cells", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__empty_cells), Toast.LENGTH_SHORT).show();
         }
         else
         {
