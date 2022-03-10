@@ -63,7 +63,7 @@
     <string name="meats">Мясо</string>
     <string name="electronics">Электроника</string>
 
-
+    <string name="gpl_title">Название</string>
     <string name="order_details">Подробности заказа</string>
     <string name="date">Дата:</string>
     <string name="number_of_products">Количество товаров:</string>
@@ -88,25 +88,25 @@
     <string name="aao_offer_description">Описание предложения</string>
     <string name="aao_add">Добавить</string>
     <string name="aao_choose_image">Выберите изображение</string>
-    <string name="message_do_you_want_to_logout">Do you want to logout?</string>
-    <string name="message_button_no">No</string>
-    <string name="message_button_yes">Yes</string>
-    <string name="alert_dialog__logout">Logout</string>
-    <string name="cart_activity__my_cart">My cart</string>
-    <string name="admin_activity__admin_control">Admin Control</string>
-    <string name="admin_activity__all_products">All Products</string>
-    <string name="admin_activity__all_offers">All Offers</string>
-    <string name="admin_add_offer_activity__add_offer">Add Offer</string>
-    <string name="error__please_enter_offer_name">Please Enter Offer Name</string>
-    <string name="error__please_enter_offer_name">Please Enter Offer Name</string>
-    <string name="admin_add_offer_activity__upload_is_in_progress">Upload Is In Progress</string>
-    <string name="admin_add_offer_activity__empty_cells">Empty Cells</string>
-    <string name="admin_add_offer_activity__added_successfully">Added Successfully</string>
-    <string name="admin_add_product_activity__add_product">Add Product</string>
-    <string name="error__please_enter_offer_name">Please Enter Offer Name</string>
-    <string name="admin_add_product_activity__upload_is_in_progress">Upload Is In Progress</string>
-    <string name="admin_add_product_activity__empty_cells">Empty Cells</string>
-    <string name="admin_add_product_activity__upload_succesfully">Uploaded Successfully</string>
+    <string name = "message_do_you_want_to_logout"> Вы хотите выйти? </string>
+    <string name = "message_button_no"> Нет </string>
+    <string name = "message_button_yes"> Да </string>
+    <string name = "alert_dialog__logout"> Выход из системы </string>
+    <string name = "cart_activity__my_cart"> Моя корзина </string>
+    <string name = "admin_activity__admin_control"> Добавление товаров </string>
+    <string name = "admin_activity__all_products"> Все товары </string>
+    <string name = "admin_activity__all_offers"> Все предложения </string>
+    <string name = "admin_add_offer_activity__add_offer"> Добавить предложение </string>
+    <string name = "error__please_enter_offer_name"> Пожалуйста, введите имя предложения </string>
+    <string name = "admin_add_offer_activity__upload_is_in_progress"> Загрузка находится в процессе </string>
+    <string name = "admin_add_offer_activity__empty_cells"> Пустые ячейки </string>
+    <string name = "admin_add_offer_activity__added_successfully"> успешно добавляется </string>
+    <string name = "admin_add_product_activity__add_product"> Добавить продукт </string>
+    <string name = "admin_add_product_activity__upload_is_in_progress"> Загрузка находится в процессе </string>
+    <string name = "admin_add_product_activity__empty_cells"> Пустые ячейки </string>
+    <string name = "admin_add_product_activity__upload_succesfully"> успешно загружена </string>
+
+
 
     <string-array name="productstypes">
         <item>Фрукты</item>

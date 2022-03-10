@@ -97,8 +97,6 @@
     <string name="admin_activity__all_products">All Products</string>
     <string name="admin_activity__all_offers">All Offers</string>
     <string name="admin_add_offer_activity__add_offer">Add Offer</string>
-    <string name="error__please_enter_offer_name">Please Enter Offer Name</string>
-    <string name="error__please_enter_offer_name">Please Enter Offer Name</string>
     <string name="admin_add_offer_activity__upload_is_in_progress">Upload Is In Progress</string>
     <string name="admin_add_offer_activity__empty_cells">Empty Cells</string>
     <string name="admin_add_offer_activity__added_successfully">Added Successfully</string>
