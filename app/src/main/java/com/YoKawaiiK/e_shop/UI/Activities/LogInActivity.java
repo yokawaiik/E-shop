@@ -48,13 +48,13 @@ public class LogInActivity extends AppCompatActivity {
         mforgerpassword = (TextView) findViewById(R.id.ForgetPassword);
         // Checking if the User is logging in or log out ! ;
         if (fauth.getCurrentUser() != null) {
-//            if (fauth.getCurrentUser().getEmail().equals("admin@gmail.com")) {
-//                startActivity(new Intent(LogInActivity.this, AdminActivity.class));
-//                finish();
-//            } else {
+            if (fauth.getCurrentUser().getEmail().equals("admin@gmail.com")) {
+                startActivity(new Intent(LogInActivity.this, AdminActivity.class));
+                finish();
+            } else {
                 startActivity(new Intent(LogInActivity.this, MainActivity.class));
                 finish();
-//            }
+            }
 
         }
 
@@ -83,15 +83,15 @@ public class LogInActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-//                            if (Email.equals("admin@gmail.com") && Password.equals("password")) {
-//                                Toast.makeText(LogInActivity.this, "Welcome My Creator", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(LogInActivity.this, AdminActivity.class));
-//                                finish();
-//                            } else {
+                            if (Email.equals("admin@gmail.com") && Password.equals("password")) {
+                                Toast.makeText(LogInActivity.this, "Welcome My Creator", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(LogInActivity.this, AdminActivity.class));
+                                finish();
+                            } else {
                                 Toast.makeText(LogInActivity.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(LogInActivity.this, MainActivity.class));
                                 finish();
-//                            }
+                            }
                         } else {
                             Toast.makeText(LogInActivity.this, "Wrong User name Or Password", Toast.LENGTH_SHORT).show();
                             mprogresspar.setVisibility(View.GONE);

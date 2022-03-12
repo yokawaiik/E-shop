@@ -145,7 +145,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/couponApplied"
         android:src="@drawable/ic_baseline_delete_24"
-        android:tint="#0C0C0C" />
+        app:tint="#0C0C0C" />
 
     <View
         android:id="@+id/divider3"

@@ -23,21 +23,21 @@
             android:title="@string/my_orders" />
 
     </group>
-    <item android:title="Categories">
+    <item android:title="@string/categories">
         <menu>
             <item
                 android:id="@+id/fruits"
-                android:title="   Fruits" />
+                android:title="@string/fruits" />
             <item
                 android:id="@+id/vegetables"
-                android:title="   Vegetables" />
+                android:title="@string/vegetables" />
 
             <item
                 android:id="@+id/meats"
-                android:title="   Meats" />
+                android:title="@string/meats" />
             <item
                 android:id="@+id/electronics"
-                android:title="   Electronics" />
+                android:title="@string/electronics" />
         </menu>
     </item>
     <item android:title="@string/logout">

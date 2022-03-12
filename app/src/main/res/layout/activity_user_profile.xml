@@ -75,7 +75,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
-                android:text="Info"
+                android:text="@string/aup_info"
                 android:textColor="#000"
                 android:textSize="23dp"
                 android:textStyle="bold" />
@@ -149,7 +149,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="8dp"
                 android:layout_toRightOf="@id/PhoneIcon"
-                android:text="My Favorites"
+                android:text="@string/aup_my_favorites"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="20dp"
                 android:textStyle="normal" />
@@ -173,7 +173,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="8dp"
                 android:layout_toRightOf="@id/PhoneIcon"
-                android:text="My Orders"
+                android:text="@string/aup_my_orders"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="20dp"
                 android:textStyle="normal" />

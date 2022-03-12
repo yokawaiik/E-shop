@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">Интернет-магазин</string>
+    <string name="Open">Открыть</string>
+    <string name="Close">Закрыть</string>
+    <string name="logout">Выйти</string>
+    <string name="home">Главная</string>
+    <string name="profile">Профиль</string>
+    <string name="favorites">Избранное</string>
+    <string name="cart">Корзина</string>
+    <string name="my_orders">Мои заказы</string>
+    <string name="choose_image">Выберите изображение</string>
+    <string name="add">Добавить</string>
+    <string name="view_all">Просмотреть все</string>
+    <string name="done">Готово</string>
+    <string name="closer_to_you">Интернет-магазин</string>
+    <string name="saved_money">Вы сэкономили 1000 $</string>
+    <string name="button_choose_image">Выберите изображение</string>
+    <string name="button_done">Готово</string>
+    <string name="textview_offer_description">Описание предложения</string>
+    <string name="textview_offer_name">Название предложения</string>
+    <string name="textview_product_name">Название продукта</string>
+    <string name="textview_product_quantity">Количество товара</string>
+    <string name="textview_product_price">Цена товара</string>
+    <string name="textview_product_expiration_date">Срок годности продукта</string>
+    <string name="textview_salesman_name">Имя продавца</string>
+    <string name="textview_salesman_salary">Зарплата продавца</string>
+    <string name="textview_done">Готово</string>
+    <string name="textview_choose_image">Выберите изображение</string>
+    <string name="button_send_password_to_email">Отправить пароль на электронную почту</string>
+    <string name="EditText_please_enter_your_username_or_email">Пожалуйста, введите ваше имя пользователя или адрес электронной почты</string>
+    <string name="ButtonText_add_to_cart">Добавить в корзину</string>
+    <string name="TextView_sign_up">Зарегистрироваться</string>
+    <string name="TextView_text_email">Электронная почта</string>
+    <string name="TextView_text_username">Имя пользователя</string>
+    <string name="TextView_text_password">Пароль</string>
+    <string name="TextView_text_retype_password">Повторите пароль</string>
+    <string name="TextView_text_phone_number">Номер телефона</string>
+    <string name="TextView_text_sign_up">Зарегистрироваться</string>
+    <string name="TextView_text_have_account_sign_in">Есть аккаунт? Войти</string>
+    <string name="Button_text_confirm">Подтвердить</string>
+    <string name="Button_text_clear">Очистить</string>
+    <string name="TextView_totalPrice_text">2000 $</string>
+    <string name="TextView_text_totalPiceTitle">Общая цена</string>
+    <string name="TextView_text_delete_from_my_cart">Удалить из корзины</string>
+    <string name="TextView_product_title_text">Продукт</string>
+    <string name="TextView_coupon_text">Бесплатный купон</string>
+    <string name="TextView_price_text">2000 $</string>
+    <string name="TextView_cut_price_text">3000 $</string>
+    <string name="TextView_offer_text">Предложение применено</string>
+    <string name="TextView_couponApplied_text">Купон применен</string>
+    <string name="login">Логин</string>
+    <string name="username">Имя пользователя</string>
+    <string name="password">Пароль</string>
+    <string name="forgot_your_password">Забыл пароль?</string>
+    <string name="sign_up">Зарегистрировать профиль</string>
+    <string name="log_in">Войти</string>
+    <string name="products">Продукты</string>
+    <string name="offers">Предложения</string>
+    <string name="logout_menu">Выйти</string>
+    <string name="categories">Категории</string>
+    <string name="fruits">Фрукты</string>
+    <string name="vegetables">Овощи</string>
+    <string name="meats">Мясо</string>
+    <string name="electronics">Электроника</string>
+
+    <string name="gpl_title">Название</string>
+    <string name="order_details">Подробности заказа</string>
+    <string name="date">Дата:</string>
+    <string name="number_of_products">Количество товаров:</string>
+    <string name="total_price">Общая стоимость</string>
+    <string name="products_text">Продукты:</string>
+    <string name="order_pending">Заказ: в ожидании</string>
+    <string name="fmc_no_products_exist">Нет продуктов</string>
+    <string name="aup_info">Информация</string>
+    <string name="aup_my_favorites">Мое избранное</string>
+    <string name="aup_my_orders">Мои заказы</string>
+    <string name="acc_order_details">Подробности заказа</string>
+    <string name="acc_price">Цена</string>
+    <string name="acc_delivery">Доставка</string>
+    <string name="acc_total_amount">Общая сумма</string>
+    <string name="acc_order">Заказ</string>
+    <string name="acc_cancel">Отмена</string>
+    <string name="aap_name">Имя</string>
+    <string name="aap_quantity">Количество</string>
+    <string name="aap_price">Цена</string>
+    <string name="aap_expiration_date">Годен до</string>
+    <string name="aao_offer_name">Название предложения</string>
+    <string name="aao_offer_description">Описание предложения</string>
+    <string name="aao_add">Добавить</string>
+    <string name="aao_choose_image">Выберите изображение</string>
+    <string name = "message_do_you_want_to_logout"> Вы хотите выйти? </string>
+    <string name = "message_button_no"> Нет </string>
+    <string name = "message_button_yes"> Да </string>
+    <string name = "alert_dialog__logout"> Выход из системы </string>
+    <string name = "cart_activity__my_cart"> Моя корзина </string>
+    <string name = "admin_activity__admin_control"> Добавление товаров </string>
+    <string name = "admin_activity__all_products"> Все товары </string>
+    <string name = "admin_activity__all_offers"> Все предложения </string>
+    <string name = "admin_add_offer_activity__add_offer"> Добавить предложение </string>
+    <string name = "error__please_enter_offer_name"> Пожалуйста, введите имя предложения </string>
+    <string name = "admin_add_offer_activity__upload_is_in_progress"> Загрузка находится в процессе </string>
+    <string name = "admin_add_offer_activity__empty_cells"> Пустые ячейки </string>
+    <string name = "admin_add_offer_activity__added_successfully"> успешно добавляется </string>
+    <string name = "admin_add_product_activity__add_product"> Добавить продукт </string>
+    <string name = "admin_add_product_activity__upload_is_in_progress"> Загрузка находится в процессе </string>
+    <string name = "admin_add_product_activity__empty_cells"> Пустые ячейки </string>
+    <string name = "admin_add_product_activity__upload_succesfully"> успешно загружена </string>
+
+
+
+    <string-array name="productstypes">
+        <item>Фрукты</item>
+        <item>Овощи</item>
+        <item>Мясо</item>
+        <item>Электроника</item>
+    </string-array>
+</resources>
