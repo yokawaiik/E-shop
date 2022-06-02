@@ -72,17 +72,17 @@ public class ProductsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_products, container, false);
+        view = inflater.inflate(R.layout.fragment_products, container, false);
 
-        ProductsRecycler= (RecyclerView)view.findViewById(R.id.ProductsRecycler);
-        ProductsFloatingActionButton= (FloatingActionButton)view.findViewById(R.id.SalesFloatingBtnId);
+        ProductsRecycler = (RecyclerView) view.findViewById(R.id.ProductsRecycler);
+        ProductsFloatingActionButton = (FloatingActionButton) view.findViewById(R.id.SalesFloatingBtnId);
 
         bar = view.findViewById(R.id.productProgressBar);
 
         mDataBaseRef = FirebaseDatabase.getInstance().getReference("product");
         adminProducts = new ArrayList<>();
 
-        adapter = new AdminProductAdapter(getActivity(),adminProducts);
+        adapter = new AdminProductAdapter(getActivity(), adminProducts);
         ProductsRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         ProductsRecycler.setAdapter(adapter);
 
@@ -90,15 +90,15 @@ public class ProductsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 adminProducts.clear();
-                for(DataSnapshot snapshot1:snapshot.getChildren())//category
+                for (DataSnapshot snapshot1 : snapshot.getChildren())//category
                 {
-                    for(DataSnapshot snapshot2 : snapshot1.getChildren())//name
+                    for (DataSnapshot snapshot2 : snapshot1.getChildren())//name
                     {
-                        adminProducts.add(new AdminProduct(snapshot2.getKey() ,
-                                snapshot1.getKey() ,
+                        adminProducts.add(new AdminProduct(snapshot2.getKey(),
+                                snapshot1.getKey(),
                                 snapshot2.child("expired").getValue(String.class),
-                                snapshot2.child("image").getValue(String.class) ,
-                                snapshot2.child("price").getValue(String.class) ,
+                                snapshot2.child("image").getValue(String.class),
+                                snapshot2.child("price").getValue(String.class),
                                 snapshot2.child("quantity").getValue(String.class)));
                     }
                 }
@@ -115,14 +115,14 @@ public class ProductsFragment extends Fragment {
         adapter.setOnItemClickListener(new AdminOfferAdapter.onItemClickListener() {
             @Override
             public void onItemClick(int pos) {
-                Intent i = new Intent(getActivity() , EditProductActivity.class);
+                Intent i = new Intent(getActivity(), EditProductActivity.class);
                 Bundle b = new Bundle();
-                b.putString("img" , adminProducts.get(pos).getImage());
-                b.putString("name" , adminProducts.get(pos).getName());
-                b.putString("category" , adminProducts.get(pos).getCategory());
-                b.putString("expired" , adminProducts.get(pos).getExpired());
-                b.putString("price" , adminProducts.get(pos).getPrice());
-                b.putString("quantity" , adminProducts.get(pos).getQuantity());
+                b.putString("img", adminProducts.get(pos).getImage());
+                b.putString("name", adminProducts.get(pos).getName());
+                b.putString("category", adminProducts.get(pos).getCategory());
+                b.putString("expired", adminProducts.get(pos).getExpired());
+                b.putString("price", adminProducts.get(pos).getPrice());
+                b.putString("quantity", adminProducts.get(pos).getQuantity());
                 i.putExtras(b);
                 startActivity(i);
             }
@@ -144,7 +144,8 @@ public class ProductsFragment extends Fragment {
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
                 }).setIcon(android.R.drawable.ic_dialog_alert);
                 dialog.show();
             }
@@ -160,7 +161,6 @@ public class ProductsFragment extends Fragment {
 
             }
         });
-
 
 
         return view;

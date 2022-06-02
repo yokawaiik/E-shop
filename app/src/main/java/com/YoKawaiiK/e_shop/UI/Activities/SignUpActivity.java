@@ -104,9 +104,9 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (email.getText().toString().isEmpty() || name.getText().toString().isEmpty() || pass1.getText().toString().isEmpty()
                         || pass2.getText().toString().isEmpty() || num.getText().toString().isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "Empty Cells", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this, R.string.suaEmptyCells, Toast.LENGTH_LONG).show();
                 } else if (!pass1.getText().toString().equals(pass2.getText().toString())) {
-                    Toast.makeText(SignUpActivity.this, "you must write password in two boxes", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this, R.string.suaTextRequirePassword, Toast.LENGTH_LONG).show();
                     pass1.setText("");
                     pass2.setText("");
                 } else {
@@ -128,12 +128,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 if (ResultURI != null) UploadImageInStorageDataBase(ResultURI);
 
-                                Toast.makeText(SignUpActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                Toast.makeText(SignUpActivity.this, R.string.suaTextRegisteredSuccessfully, Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
-                                Toast.makeText(SignUpActivity.this, "registration failed", Toast.LENGTH_LONG).show();
+                                Toast.makeText(SignUpActivity.this, R.string.suaTextRegistrationFailed, Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -162,7 +162,7 @@ public class SignUpActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "SELECT IMAGE"), GALARY_PICK);
+        startActivityForResult(Intent.createChooser(intent, getString(R.string.suaSelectImage)), GALARY_PICK);
 
     }
 

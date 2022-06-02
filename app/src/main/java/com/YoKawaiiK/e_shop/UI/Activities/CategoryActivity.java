@@ -38,7 +38,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CategoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class CategoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle mToggle;
@@ -67,7 +67,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         CurrentUser = mAuth.getCurrentUser();
         UserId = CurrentUser.getUid();
 
-        CategoryName = getIntent().getStringExtra("Category Name");
+        CategoryName = getIntent().getStringExtra(getString(R.string.intentStringExtraCategoryName));
 
 
         //on clicking any product (go to ProductInfo Activity to show it's info)
@@ -92,19 +92,19 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
     }
 
-    private void onClickAnyProduct(){
+    private void onClickAnyProduct() {
         listener = new CategoryProductInfoAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
                 CategoryProductInfo product = CategoryProducts.get(position);
 
                 Intent intent = new Intent(CategoryActivity.this, ProductInfoActivity.class);
-                intent.putExtra("Product Name",product.getProductName());
-                intent.putExtra("Product Price",product.getProductPrice());
-                intent.putExtra("Product Image",product.getProductImage());
-                intent.putExtra("Product ExpiryDate",product.getProductExpiryDate());
-                intent.putExtra("Product IsFavorite",String.valueOf(product.getIsFavorite()));
-                intent.putExtra("Is Offered","no");
+                intent.putExtra(getString(R.string.caClickAnyProductProductName), product.getProductName());
+                intent.putExtra(getString(R.string.caClickAnyProductProductPrice), product.getProductPrice());
+                intent.putExtra(getString(R.string.caClickAnyProductProductImage), product.getProductImage());
+                intent.putExtra(getString(R.string.caClickAnyProductProductExpiryDate), product.getProductExpiryDate());
+                intent.putExtra(getString(R.string.caClickAnyProductProductIsFavorite), String.valueOf(product.getIsFavorite()));
+                intent.putExtra(getString(R.string.caClickAnyProductProductIsOffered), "no");
 
                 startActivity(intent);
             }
@@ -112,16 +112,16 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     }
 
 
-    private void setCategoryData(){
+    private void setCategoryData() {
         //toolbar
-        mToolBar =(Toolbar)findViewById(R.id.CategoryTooBar);
+        mToolBar = (Toolbar) findViewById(R.id.CategoryTooBar);
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        recyclerView = (RecyclerView)findViewById(R.id.CategoryRecycler);
+        recyclerView = (RecyclerView) findViewById(R.id.CategoryRecycler);
         CategoryProducts = new ArrayList<>();
 
-        adapter = new CategoryProductInfoAdapter(CategoryActivity.this,CategoryProducts,listener);
+        adapter = new CategoryProductInfoAdapter(CategoryActivity.this, CategoryProducts, listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(CategoryActivity.this));
         recyclerView.setAdapter(adapter);
 
@@ -131,14 +131,14 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
     }
 
-    private void getProductsData(){
+    private void getProductsData() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("product").child(CategoryName);
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         final String ProductName = dataSnapshot.getKey().toString();
                         final String ProductPrice = dataSnapshot.child("price").getValue().toString();
                         final String ProductImage = dataSnapshot.child("image").getValue().toString();
@@ -150,30 +150,32 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                         ValueEventListener vvalueEventListener = new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.exists()){
-                                    CategoryProducts.add(new CategoryProductInfo(ProductImage,ProductName,ProductPrice,ProductExpiryDate,true));
-                                }
-                                else{
-                                    CategoryProducts.add(new CategoryProductInfo(ProductImage,ProductName,ProductPrice,ProductExpiryDate,false));
+                                if (snapshot.exists()) {
+                                    CategoryProducts.add(new CategoryProductInfo(ProductImage, ProductName, ProductPrice, ProductExpiryDate, true));
+                                } else {
+                                    CategoryProducts.add(new CategoryProductInfo(ProductImage, ProductName, ProductPrice, ProductExpiryDate, false));
                                 }
                                 adapter.notifyDataSetChanged();
                             }
+
                             @Override
-                            public void onCancelled(@NonNull DatabaseError error) {}
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
                         };
                         x.addListenerForSingleValueEvent(vvalueEventListener);
                     }
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         m.addListenerForSingleValueEvent(valueEventListener);
     }
 
 
-
-    private void DefineNavigation(){
+    private void DefineNavigation() {
         drawerLayout = (DrawerLayout) findViewById(R.id.CategoryDrawer);
         navigationView = (NavigationView) findViewById(R.id.CategoryNavigation);
 
@@ -190,13 +192,13 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         getNavHeaderData();
     }
 
-    private void getNavHeaderData(){
+    private void getNavHeaderData() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("users").child(UserId);
-        ValueEventListener valueEventListener=new ValueEventListener() {
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     String Name = snapshot.child("Name").getValue().toString();
                     String Image = snapshot.child("Image").getValue().toString();
                     mPerson_name.setText(Name);
@@ -206,8 +208,10 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                         Picasso.get().load(Image).placeholder(R.drawable.profile).into(mPerson_image);
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         m.addListenerForSingleValueEvent(valueEventListener);
     }
@@ -215,64 +219,56 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item))return true;
+        if (mToggle.onOptionsItemSelected(item)) return true;
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id=menuItem.getItemId();
-        if(id== R.id.Home){
+        int id = menuItem.getItemId();
+        if (id == R.id.Home) {
             startActivity(new Intent(CategoryActivity.this, MainActivity.class));
-        }
-        else if(id== R.id.Profile){
+        } else if (id == R.id.Profile) {
             startActivity(new Intent(CategoryActivity.this, UserProfileActivity.class));
-        }
-        else if(id == R.id.Cart){
+        } else if (id == R.id.Cart) {
             startActivity(new Intent(CategoryActivity.this, CartActivity.class));
-        }
-        else if(id == R.id.MyOrders){
+        } else if (id == R.id.MyOrders) {
             startActivity(new Intent(CategoryActivity.this, OrderActivity.class));
-        }
-        else if(id == R.id.favourites){
+        } else if (id == R.id.favourites) {
             startActivity(new Intent(CategoryActivity.this, FavouritesActivity.class));
         }
-        else if(id== R.id.fruits){
-            CategoryName = "Fruits";
+
+        else if (id == R.id.fruits) {
+            CategoryName =  getString(R.string.intentStringExtraCategoryFruits);
             setCategoryData();
-        }
-        else if(id== R.id.vegetables){
-            CategoryName = "Vegetables";
+        } else if (id == R.id.vegetables) {
+            CategoryName = getString(R.string.intentStringExtraCategoryVegetables);
             setCategoryData();
-        }
-        else if(id== R.id.meats){
-            CategoryName = "Meats";
+        } else if (id == R.id.meats) {
+            CategoryName = getString(R.string.intentStringExtraCategoryMeats);
             setCategoryData();
-        }
-        else if(id== R.id.electronics){
-            CategoryName = "Electronics";
+        } else if (id == R.id.electronics) {
+            CategoryName = getString(R.string.intentStringExtraCategoryElectronics);
             setCategoryData();
-        }
-        else if(id== R.id.Logout){
+        } else if (id == R.id.Logout) {
             CheckLogout();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-
-    private void CheckLogout(){
+    private void CheckLogout() {
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(CategoryActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        checkAlert.setMessage(R.string.checkLogoutMessage)
+                .setCancelable(false).setPositiveButton(R.string.checkLogoutAnswerYes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent=new Intent(CategoryActivity.this, LogInActivity.class);
+                Intent intent = new Intent(CategoryActivity.this, LogInActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.checkLogoutAnswerNo, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -280,26 +276,26 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(getString(R.string.checkLogoutTitle));
         alert.show();
 
     }
 
 
-    private void showCartIcon(){
+    private void showCartIcon() {
         //toolbar & cartIcon
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view= inflater.inflate(R.layout.buyer_toolbar,null);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.buyer_toolbar, null);
         actionBar.setCustomView(view);
 
         //************custom action items xml**********************
-        CustomCartContainer = (RelativeLayout)findViewById(R.id.CustomCartIconContainer);
-        PageTitle =(TextView)findViewById(R.id.PageTitle);
-        CustomCartNumber = (TextView)findViewById(R.id.CustomCartNumber);
+        CustomCartContainer = (RelativeLayout) findViewById(R.id.CustomCartIconContainer);
+        PageTitle = (TextView) findViewById(R.id.PageTitle);
+        CustomCartNumber = (TextView) findViewById(R.id.CustomCartNumber);
 
         PageTitle.setText(CategoryName);
         setNumberOfItemsInCartIcon();
@@ -314,33 +310,32 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     }
 
 
-    private void setNumberOfItemsInCartIcon(){
+    private void setNumberOfItemsInCartIcon() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(UserId);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    if(dataSnapshot.getChildrenCount()==1){
+                    if (dataSnapshot.getChildrenCount() == 1) {
                         CustomCartNumber.setVisibility(View.GONE);
-                    }
-                    else {
+                    } else {
                         CustomCartNumber.setVisibility(View.VISIBLE);
-                        CustomCartNumber.setText(String.valueOf(dataSnapshot.getChildrenCount()-1));
+                        CustomCartNumber.setText(String.valueOf(dataSnapshot.getChildrenCount() - 1));
                     }
-                }
-                else{
+                } else {
                     CustomCartNumber.setVisibility(View.GONE);
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         m.addListenerForSingleValueEvent(eventListener);
     }
 
-    private void HandleTotalPriceToZeroIfNotExist(){
+    private void HandleTotalPriceToZeroIfNotExist() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(UserId);
         ValueEventListener eventListener = new ValueEventListener() {
@@ -352,7 +347,8 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         m.addListenerForSingleValueEvent(eventListener);
 

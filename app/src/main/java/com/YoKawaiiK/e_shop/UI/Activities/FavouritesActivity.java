@@ -110,22 +110,22 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         }
         else if(id== R.id.fruits){
             Intent intent =new Intent(FavouritesActivity.this, CategoryActivity.class);
-            intent.putExtra("Category Name","Fruits");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryFruits));
             startActivity(intent);
         }
         else if(id== R.id.vegetables){
             Intent intent =new Intent(FavouritesActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Vegetables");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryVegetables));
             startActivity(intent);
         }
         else if(id== R.id.meats){
             Intent intent =new Intent(FavouritesActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Meats");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryMeats));
             startActivity(intent);
         }
         else if(id== R.id.electronics){
             Intent intent =new Intent(FavouritesActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Electronics");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryElectronics));
             startActivity(intent);
         }
         else if (id == R.id.Logout) {
@@ -136,18 +136,19 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
     }
 
 
-    private void CheckLogout(){
+
+    private void CheckLogout() {
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(FavouritesActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        checkAlert.setMessage(R.string.checkLogoutMessage)
+                .setCancelable(false).setPositiveButton(R.string.checkLogoutAnswerYes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent=new Intent(FavouritesActivity.this, LogInActivity.class);
+                Intent intent = new Intent(FavouritesActivity.this, LogInActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.checkLogoutAnswerNo, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -155,10 +156,11 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(getString(R.string.checkLogoutTitle));
         alert.show();
 
     }
+
 
     private void DefineNavigation() {
         View mnavigationview;
@@ -251,7 +253,7 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         PageTitle =(TextView)findViewById(R.id.PageTitle);
         CustomCartNumber = (TextView)findViewById(R.id.CustomCartNumber);
 
-        PageTitle.setText("Favourites");
+        PageTitle.setText(R.string.faPageTitle);
         setNumberOfItemsInCartIcon();
 
         CustomCartContainer.setOnClickListener(new View.OnClickListener() {

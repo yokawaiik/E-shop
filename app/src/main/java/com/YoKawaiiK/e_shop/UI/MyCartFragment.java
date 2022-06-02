@@ -41,8 +41,8 @@ public class MyCartFragment extends Fragment {
     CartAdapter cartAdapter;
     private FirebaseAuth mAuth;
     private String CurrentUser;
-    private DatabaseReference m , root;
-    public  int totalpriceVal =0;
+    private DatabaseReference m, root;
+    public int totalpriceVal = 0;
 
 
     public MyCartFragment() {
@@ -50,7 +50,7 @@ public class MyCartFragment extends Fragment {
     }
 
     private RecyclerView CartItemRecyclerView;
-    private Button Cartconfirm ,Cartclear;
+    private Button Cartconfirm, Cartclear;
 
     public static MyCartFragment newInstance(String param1, String param2) {
         MyCartFragment fragment = new MyCartFragment();
@@ -69,7 +69,7 @@ public class MyCartFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         CurrentUser = mAuth.getCurrentUser().getUid();
 
     }
@@ -80,7 +80,7 @@ public class MyCartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_cart, container, false);
         CartItemRecyclerView = view.findViewById(R.id.cart_recycle);
         Cartconfirm = view.findViewById(R.id.cart_confirmbtn);
-        Cartclear =  view.findViewById(R.id.cart_clearbtn);
+        Cartclear = view.findViewById(R.id.cart_clearbtn);
         totalprice = view.findViewById(R.id.totalprice);
         Cart_container = view.findViewById(R.id.Cart_container);
         NoItem = view.findViewById(R.id.NoItem);
@@ -96,7 +96,7 @@ public class MyCartFragment extends Fragment {
         CartItemRecyclerView.setAdapter(cartAdapter);
 
 
-        ValueEventListener valueEventListener =new ValueEventListener() {
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -144,7 +144,7 @@ public class MyCartFragment extends Fragment {
         });
 
 
-        cartAdapter.setOnItemClickListener(new CartAdapter.OnItemClickListener(){
+        cartAdapter.setOnItemClickListener(new CartAdapter.OnItemClickListener() {
             @Override
             public void UpdateTotalPrice(String str) {
                 totalprice.setText(str);
@@ -152,7 +152,7 @@ public class MyCartFragment extends Fragment {
 
             @Override
             public void onDeleteClick(int position) {
-                String x  = cartItemModelList.get(position).getProducttitle();
+                String x = cartItemModelList.get(position).getProducttitle();
                 m.child(CurrentUser).child(x).removeValue();
                 cartItemModelList.remove(position);
                 cartAdapter.notifyItemRemoved(position);
@@ -175,22 +175,21 @@ public class MyCartFragment extends Fragment {
                     }
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         x.addListenerForSingleValueEvent(valueEventListener1);
 
-        return  view;
+        return view;
     }
 
 
-
-
-
-    public void accountTotalPrice(){
+    public void accountTotalPrice() {
         totalpriceVal = 0;
         m = root.child("cart");
-        ValueEventListener valueEventListener =new ValueEventListener() {
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -201,12 +200,12 @@ public class MyCartFragment extends Fragment {
 
                             String cartItemPrice = dataSnapshot.child("productPrice").getValue(String.class).toString();
                             String quantity = dataSnapshot.child("quantity").getValue(String.class).toString();
-                            totalpriceVal += Integer.parseInt(  cartItemPrice) * Integer.parseInt( quantity );
+                            totalpriceVal += Integer.parseInt(cartItemPrice) * Integer.parseInt(quantity);
                         }
 
                     }
                     root.child("cart").child(CurrentUser).child("totalPrice").setValue(String.valueOf(totalpriceVal));
-                    totalprice.setText(String.valueOf(totalpriceVal)+" $");
+                    totalprice.setText(String.valueOf(totalpriceVal) + " $");
                     cartAdapter.notifyDataSetChanged();
                 }
             }
@@ -220,7 +219,6 @@ public class MyCartFragment extends Fragment {
         m.addListenerForSingleValueEvent(valueEventListener);
 
     }
-
 
 
 }

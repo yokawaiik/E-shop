@@ -39,7 +39,7 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProductInfoActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class ProductInfoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle mToggle;
@@ -49,16 +49,16 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
     private String ProductName, ProductPrice, ProductImage, ProductNExpiryDate, ProductIsFavorite, IsOffered;
     //xml views
     private ImageView PImage, PIsFav;
-    private TextView PName, PCategory, PAmount, PPrice, OldPrice,OfferRate, PExpiryDate;
-    private RelativeLayout AddToCartContainer,DeleteFromCartContainer,CheckCartContainer;
+    private TextView PName, PCategory, PAmount, PPrice, OldPrice, OfferRate, PExpiryDate;
+    private RelativeLayout AddToCartContainer, DeleteFromCartContainer, CheckCartContainer;
     private LinearLayout OfferContainer;
-    private Button Back,Confirm;
+    private Button Back, Confirm;
     private FirebaseAuth mAuth;
     private FirebaseUser CurrentUser;
     private String UserId;
     //Custom Xml Views (cart Icon)
     private RelativeLayout CustomCartContainer;
-    private TextView PageTitle,CustomCartNumber;
+    private TextView PageTitle, CustomCartNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,17 +69,17 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
         UserId = CurrentUser.getUid();
 
         //toolbar
-        mToolbar =(Toolbar)findViewById(R.id.ProductToolBar);
+        mToolbar = (Toolbar) findViewById(R.id.ProductToolBar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //have sending data
-        ProductName= getIntent().getStringExtra("Product Name");
-        ProductPrice= getIntent().getStringExtra("Product Price");
-        ProductImage= getIntent().getStringExtra("Product Image");
-        ProductNExpiryDate= getIntent().getStringExtra("Product ExpiryDate");
-        ProductIsFavorite= getIntent().getStringExtra("Product IsFavorite");
-        IsOffered = getIntent().getStringExtra("Is Offered");
+        ProductName = getIntent().getStringExtra(getString(R.string.piaListItemProductName));
+        ProductPrice = getIntent().getStringExtra(getString(R.string.piaListItemProductPrice));
+        ProductImage = getIntent().getStringExtra(getString(R.string.piaListItemProductImage));
+        ProductNExpiryDate = getIntent().getStringExtra(getString(R.string.piaListItemProductExpiryDate));
+        ProductIsFavorite = getIntent().getStringExtra(getString(R.string.piaListItemProductIsFavorite));
+        IsOffered = getIntent().getStringExtra(getString(R.string.piaListItemProductIsOffered));
 
         // define xml data
         DefineXmlViews();
@@ -110,47 +110,47 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
         RefreshContainers();
     }
 
-    private void RefreshContainers(){
+    private void RefreshContainers() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference x = root.child("cart").child(UserId).child(ProductName);
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     AddToCartContainer.setVisibility(View.GONE);
                     DeleteFromCartContainer.setVisibility(View.VISIBLE);
-                }
-                else{
+                } else {
                     AddToCartContainer.setVisibility(View.VISIBLE);
                     DeleteFromCartContainer.setVisibility(View.GONE);
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         x.addListenerForSingleValueEvent(valueEventListener);
 
     }
 
-    private void onClicking(){
+    private void onClicking() {
         PIsFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ProductIsFavorite.equalsIgnoreCase("true")){
+                if (ProductIsFavorite.equalsIgnoreCase("true")) {
                     PIsFav.setImageResource(R.drawable.ic_baseline_favorite_shadow_24);
-                    ProductIsFavorite="false";
+                    ProductIsFavorite = "false";
                     //here Delete favourites from database
-                    DatabaseReference x= FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId);
+                    DatabaseReference x = FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId);
                     x.child(ProductName).removeValue();
-                }
-                else{
+                } else {
                     PIsFav.setImageResource(R.drawable.ic_baseline_favorite_24);
-                    ProductIsFavorite="true";
+                    ProductIsFavorite = "true";
                     //here save favourites in database
-                    DatabaseReference x= FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId).child(ProductName);
+                    DatabaseReference x = FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId).child(ProductName);
                     x.child("checked").setValue(true);
                     x.child("productimage").setValue(ProductImage);
-                    x.child("productprice").setValue("EGP "+ProductPrice);
+                    x.child("productprice").setValue("EGP " + ProductPrice);
                     x.child("producttitle").setValue(ProductName);
 
                 }
@@ -177,17 +177,19 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
                 CheckCartContainer.setVisibility(View.GONE);
                 DeleteFromCartContainer.setVisibility(View.VISIBLE);
                 AddToCartContainer.setVisibility(View.GONE);
-                Toast.makeText(ProductInfoActivity.this,"The Product Added Successfully to your Cart",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProductInfoActivity.this,
+                        R.string.piaListItemProduct, Toast.LENGTH_SHORT).show();
                 //here Add the product to the cart
-                HashMap<String,String> hashMap = new HashMap<>();
-                hashMap.put("productImage",ProductImage);
-                hashMap.put("productPrice",ProductPrice);
-                hashMap.put("quantity","1");
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put("productImage", ProductImage);
+                hashMap.put("productPrice", ProductPrice);
+                hashMap.put("quantity", "1");
                 int PriceAfterOffer;
-                if(IsOffered.equalsIgnoreCase("yes"))PriceAfterOffer = (int) ((Integer.valueOf(ProductPrice)) - (Integer.valueOf(ProductPrice)*0.3));
-                else PriceAfterOffer =(int)(Integer.valueOf(ProductPrice));
+                if (IsOffered.equalsIgnoreCase("yes"))
+                    PriceAfterOffer = (int) ((Integer.valueOf(ProductPrice)) - (Integer.valueOf(ProductPrice) * 0.3));
+                else PriceAfterOffer = (int) (Integer.valueOf(ProductPrice));
 
-                hashMap.put("productPrice",String.valueOf(PriceAfterOffer));
+                hashMap.put("productPrice", String.valueOf(PriceAfterOffer));
 
                 DatabaseReference x = FirebaseDatabase.getInstance().getReference().child("cart").child(UserId);
                 x.child(ProductName).setValue(hashMap);
@@ -207,7 +209,9 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
                 DatabaseReference x = FirebaseDatabase.getInstance().getReference().child("cart").child(UserId);
                 x.child(ProductName).removeValue();
 
-                Toast.makeText(ProductInfoActivity.this,"The Product Deleted Successfully from your Cart",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProductInfoActivity.this,
+                        R.string.piaListItemProductDeletedSuccessfully,
+                        Toast.LENGTH_SHORT).show();
 
                 //Refresh CartIcon
                 showCartIcon();
@@ -231,28 +235,31 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
         HandleTotalPriceToZeroIfNotExist();
     }
 
-    private void setProductData(){
+    private void setProductData() {
         Picasso.get().load(ProductImage).into(PImage);
         PName.setText(ProductName);
 
-        if(IsOffered.equalsIgnoreCase("yes")){
-            int PriceAfterOffer = (int) ((Integer.valueOf(ProductPrice)) - (Integer.valueOf(ProductPrice)*0.3));
-            PPrice.setText("Price: "+PriceAfterOffer+" EGP");
-            OldPrice. setText(ProductPrice+" EGP");
-            OfferRate.setText("- 30%");
+        if (IsOffered.equalsIgnoreCase("yes")) {
+            int PriceAfterOffer = (int) ((Integer.valueOf(ProductPrice)) - (Integer.valueOf(ProductPrice) * 0.3));
+            PPrice.setText(getString(R.string.piaSetProductPrice) + PriceAfterOffer + " EGP");
+            OldPrice.setText(ProductPrice + " EGP");
+            OfferRate.setText(R.string.piaOfferRate);
             OldPrice.setPaintFlags(OldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
-        else{
+        } else {
             OfferContainer.setVisibility(View.GONE);
-            PPrice.setText("Price: "+ProductPrice+" EGP");
+            PPrice.setText(getString(R.string.piaSetProductPrice) + ProductPrice + " EGP");
         }
 
 
-        if(ProductIsFavorite.equalsIgnoreCase("true"))PIsFav.setImageResource(R.drawable.ic_baseline_favorite_24);
+        if (ProductIsFavorite.equalsIgnoreCase("true"))
+            PIsFav.setImageResource(R.drawable.ic_baseline_favorite_24);
         else PIsFav.setImageResource(R.drawable.ic_baseline_favorite_shadow_24);
 
-        if(ProductNExpiryDate.equalsIgnoreCase("null") )PExpiryDate.setVisibility(View.GONE);
-        else {PExpiryDate.setVisibility(View.VISIBLE); PExpiryDate.setText("Expiry Date: "+ProductNExpiryDate);}
+        if (ProductNExpiryDate.equalsIgnoreCase("null")) PExpiryDate.setVisibility(View.GONE);
+        else {
+            PExpiryDate.setVisibility(View.VISIBLE);
+            PExpiryDate.setText(getString(R.string.piaSetProductExpiryDate) + ProductNExpiryDate);
+        }
 
 
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
@@ -260,45 +267,51 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot dataSnapshot : snapshot.child("Fruits").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductName)){
-                            PCategory.setText("Category: Fruits");
-                            PAmount.setText("Available Amounts: "+dataSnapshot.child("quantity").getValue());
-                            break;}
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.child("Fruits").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductName)) {
+                            PCategory.setText(R.string.piaSetProductDateCategoryFruits);
+                            PAmount.setText(getString(R.string.piaSetProductDateAvailableAmounts) + dataSnapshot.child("quantity").getValue());
+                            break;
+                        }
                     }
-                    for(DataSnapshot dataSnapshot : snapshot.child("Electronics").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductName)){
-                            PCategory.setText("Category: Electronics");
-                            PAmount.setText("Available Amounts: "+dataSnapshot.child("quantity").getValue());
-                            break;}
-                    }
-
-                    for(DataSnapshot dataSnapshot : snapshot.child("Meats").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductName)){
-                            PCategory.setText("Category: Meats");
-                            PAmount.setText("Available Amounts: "+dataSnapshot.child("quantity").getValue());
-                            break;}
+                    for (DataSnapshot dataSnapshot : snapshot.child("Electronics").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductName)) {
+                            PCategory.setText(R.string.piaSetProductDateCategoryElectronics);
+                            PAmount.setText(getString(R.string.piaSetProductDateAvailableAmounts) + dataSnapshot.child("quantity").getValue());
+                            break;
+                        }
                     }
 
-                    for(DataSnapshot dataSnapshot : snapshot.child("Vegetables").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductName)){
-                            PCategory.setText("Category: Vegetables");
-                            PAmount.setText("Available Amounts: "+dataSnapshot.child("quantity").getValue());
-                            break;}
+                    for (DataSnapshot dataSnapshot : snapshot.child("Meats").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductName)) {
+                            PCategory.setText(R.string.piaSetProductDateCategoryMeats);
+                            PAmount.setText(getString(R.string.piaSetProductDateAvailableAmounts) + dataSnapshot.child("quantity").getValue());
+                            break;
+                        }
+                    }
+
+                    for (DataSnapshot dataSnapshot : snapshot.child("Vegetables").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductName)) {
+                            PCategory.setText(R.string.piaSetProductDateCategoryVegetables);
+                            PAmount.setText(getString(R.string.piaSetProductDateAvailableAmounts) + dataSnapshot.child("quantity").getValue());
+                            break;
+                        }
                     }
 
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         m.addListenerForSingleValueEvent(valueEventListener);
 
     }
 
 
-    private void DefineNavigation(){
+    private void DefineNavigation() {
         drawerLayout = (DrawerLayout) findViewById(R.id.ProductDrawer);
         navigationView = (NavigationView) findViewById(R.id.ProductNavigation);
 
@@ -315,13 +328,13 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
         getNavHeaderData();
     }
 
-    private void getNavHeaderData(){
+    private void getNavHeaderData() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("users").child(UserId);
-        ValueEventListener valueEventListener=new ValueEventListener() {
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
                     String Name = snapshot.child("Name").getValue().toString();
                     String Image = snapshot.child("Image").getValue().toString();
                     mPerson_name.setText(Name);
@@ -331,8 +344,10 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
                         Picasso.get().load(Image).placeholder(R.drawable.profile).into(mPerson_image);
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         m.addListenerForSingleValueEvent(valueEventListener);
     }
@@ -340,49 +355,40 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)) return true;
+        if (mToggle.onOptionsItemSelected(item)) return true;
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id=menuItem.getItemId();
-        if(id== R.id.Home){
+        int id = menuItem.getItemId();
+        if (id == R.id.Home) {
             startActivity(new Intent(ProductInfoActivity.this, MainActivity.class));
-        }
-        else if(id== R.id.Profile){
+        } else if (id == R.id.Profile) {
             startActivity(new Intent(ProductInfoActivity.this, UserProfileActivity.class));
-        }
-        else if(id == R.id.favourites){
+        } else if (id == R.id.favourites) {
             startActivity(new Intent(ProductInfoActivity.this, FavouritesActivity.class));
-        }
-        else if(id == R.id.Cart){
+        } else if (id == R.id.Cart) {
             startActivity(new Intent(ProductInfoActivity.this, CartActivity.class));
-        }
-        else if(id == R.id.MyOrders){
+        } else if (id == R.id.MyOrders) {
             startActivity(new Intent(ProductInfoActivity.this, OrderActivity.class));
-        }
-        else if(id== R.id.fruits){
-            Intent intent =new Intent(ProductInfoActivity.this, CategoryActivity.class);
-            intent.putExtra("Category Name","Fruits");
+        } else if (id == R.id.fruits) {
+            Intent intent = new Intent(ProductInfoActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.navItemSelectedCategoryName), "Fruits");
             startActivity(intent);
-        }
-        else if(id== R.id.vegetables){
-            Intent intent =new Intent(ProductInfoActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Vegetables");
+        } else if (id == R.id.vegetables) {
+            Intent intent = new Intent(ProductInfoActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.navItemSelectedCategoryName), "Vegetables");
             startActivity(intent);
-        }
-        else if(id== R.id.meats){
-            Intent intent =new Intent(ProductInfoActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Meats");
+        } else if (id == R.id.meats) {
+            Intent intent = new Intent(ProductInfoActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.navItemSelectedCategoryName), "Meats");
             startActivity(intent);
-        }
-        else if(id== R.id.electronics){
-            Intent intent =new Intent(ProductInfoActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Electronics");
+        } else if (id == R.id.electronics) {
+            Intent intent = new Intent(ProductInfoActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.navItemSelectedCategoryName), "Electronics");
             startActivity(intent);
-        }
-        else if(id== R.id.Logout){
+        } else if (id == R.id.Logout) {
             CheckLogout();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -390,18 +396,18 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
     }
 
 
-    private void CheckLogout(){
+    private void CheckLogout() {
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(ProductInfoActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        checkAlert.setMessage(R.string.checkLogoutMessage)
+                .setCancelable(false).setPositiveButton(R.string.checkLogoutAnswerYes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent=new Intent(ProductInfoActivity.this, LogInActivity.class);
+                Intent intent = new Intent(ProductInfoActivity.this, LogInActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.checkLogoutAnswerNo, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -409,28 +415,28 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(getString(R.string.checkLogoutTitle));
         alert.show();
 
     }
 
 
-    private void showCartIcon(){
+    private void showCartIcon() {
         //toolbar & cartIcon
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view= inflater.inflate(R.layout.buyer_toolbar,null);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.buyer_toolbar, null);
         actionBar.setCustomView(view);
 
         //************custom action items xml**********************
-        CustomCartContainer = (RelativeLayout)findViewById(R.id.CustomCartIconContainer);
-        PageTitle =(TextView)findViewById(R.id.PageTitle);
-        CustomCartNumber = (TextView)findViewById(R.id.CustomCartNumber);
+        CustomCartContainer = (RelativeLayout) findViewById(R.id.CustomCartIconContainer);
+        PageTitle = (TextView) findViewById(R.id.PageTitle);
+        CustomCartNumber = (TextView) findViewById(R.id.CustomCartNumber);
 
-        PageTitle.setText("Product Info");
+        PageTitle.setText(R.string.piaPageTitle);
         setNumberOfItemsInCartIcon();
 
         CustomCartContainer.setOnClickListener(new View.OnClickListener() {
@@ -443,33 +449,32 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
     }
 
 
-    private void setNumberOfItemsInCartIcon(){
+    private void setNumberOfItemsInCartIcon() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(UserId);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    if(dataSnapshot.getChildrenCount()==1){
+                    if (dataSnapshot.getChildrenCount() == 1) {
                         CustomCartNumber.setVisibility(View.GONE);
-                    }
-                    else {
+                    } else {
                         CustomCartNumber.setVisibility(View.VISIBLE);
-                        CustomCartNumber.setText(String.valueOf(dataSnapshot.getChildrenCount()-1));
+                        CustomCartNumber.setText(String.valueOf(dataSnapshot.getChildrenCount() - 1));
                     }
-                }
-                else{
+                } else {
                     CustomCartNumber.setVisibility(View.GONE);
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         m.addListenerForSingleValueEvent(eventListener);
     }
 
-    private void HandleTotalPriceToZeroIfNotExist(){
+    private void HandleTotalPriceToZeroIfNotExist() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(UserId);
         ValueEventListener eventListener = new ValueEventListener() {
@@ -481,7 +486,8 @@ public class ProductInfoActivity extends AppCompatActivity  implements Navigatio
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         m.addListenerForSingleValueEvent(eventListener);
 

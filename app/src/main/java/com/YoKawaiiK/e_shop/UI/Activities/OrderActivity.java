@@ -121,62 +121,53 @@ public class OrderActivity extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id=item.getItemId();
-        if(id== R.id.Home){
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == R.id.Home) {
             startActivity(new Intent(OrderActivity.this, MainActivity.class));
-        }
-        else if(id== R.id.Profile){
+        } else if (id == R.id.Profile) {
             startActivity(new Intent(OrderActivity.this, UserProfileActivity.class));
-        }
-        else if(id == R.id.favourites){
+        } else if (id == R.id.favourites) {
             startActivity(new Intent(OrderActivity.this, FavouritesActivity.class));
-        }
-        else if(id == R.id.Cart){
+        } else if (id == R.id.Cart) {
             startActivity(new Intent(OrderActivity.this, CartActivity.class));
-        }
-        else if(id== R.id.fruits){
-            Intent intent =new Intent(OrderActivity.this, CategoryActivity.class);
-            intent.putExtra("Category Name","Fruits");
+        } else if (id == R.id.fruits) {
+            Intent intent = new Intent(OrderActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryFruits));
             startActivity(intent);
-        }
-        else if(id== R.id.vegetables){
-            Intent intent =new Intent(OrderActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Vegetables");
+        } else if (id == R.id.vegetables) {
+            Intent intent = new Intent(OrderActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryVegetables));
             startActivity(intent);
-        }
-        else if(id== R.id.meats){
-            Intent intent =new Intent(OrderActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Meats");
+        } else if (id == R.id.meats) {
+            Intent intent = new Intent(OrderActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryMeats));
             startActivity(intent);
-        }
-        else if(id== R.id.electronics){
-            Intent intent =new Intent(OrderActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Electronics");
+        } else if (id == R.id.electronics) {
+            Intent intent = new Intent(OrderActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryElectronics));
             startActivity(intent);
-        }
-        else if(id== R.id.Logout){
+        } else if (id == R.id.Logout) {
             CheckLogout();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
-
         return true;
     }
 
-
-    private void CheckLogout(){
+    private void CheckLogout() {
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(OrderActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        checkAlert.setMessage(R.string.checkLogoutMessage)
+                .setCancelable(false).setPositiveButton(R.string.checkLogoutAnswerYes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent=new Intent(OrderActivity.this, LogInActivity.class);
+                Intent intent = new Intent(OrderActivity.this, LogInActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.checkLogoutAnswerNo, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -184,10 +175,12 @@ public class OrderActivity extends AppCompatActivity implements NavigationView.O
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(getString(R.string.checkLogoutTitle));
         alert.show();
 
     }
+
+
 
     private void showCartIcon(){
         //toolbar & cartIcon
@@ -204,7 +197,7 @@ public class OrderActivity extends AppCompatActivity implements NavigationView.O
         PageTitle =(TextView)findViewById(R.id.PageTitle);
         CustomCartNumber = (TextView)findViewById(R.id.CustomCartNumber);
 
-        PageTitle.setText("My Orders");
+        PageTitle.setText(R.string.oaPageTitle);
         setNumberOfItemsInCartIcon();
 
         CustomCartContainer.setOnClickListener(new View.OnClickListener() {

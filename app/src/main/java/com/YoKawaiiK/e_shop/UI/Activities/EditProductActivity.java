@@ -64,7 +64,7 @@ public class EditProductActivity extends AppCompatActivity {
         //tool bar
         mToolBar = (Toolbar)findViewById(R.id.EditProduct_ToolBar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Edit Product");
+        getSupportActionBar().setTitle(R.string.epaTitle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = findViewById(R.id.editTextProductNameEdit);
@@ -77,15 +77,15 @@ public class EditProductActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
 
         Bundle b = getIntent().getExtras();
-        name.setText(b.getString("name"));
-        oldName = b.getString("name");
-        quantity.setText(b.getString("quantity"));
+        name.setText(b.getString(getString(R.string.epaViewTextName)));
+        oldName = b.getString(getString(R.string.epaViewTextOldName));
+        quantity.setText(b.getString(getString(R.string.epaViewTextQuantity)));
         Picasso.get().load(b.getString("img")).fit().centerCrop().into(img);
-        price.setText(b.getString("price"));
-        expDate.setText(b.getString("expired"));
+        price.setText(b.getString(getString(R.string.epaViewTextPrice)));
+        expDate.setText(b.getString(getString(R.string.epaViewTextExpired)));
         imgUri = Uri.parse(b.getString("img"));
-        oldImagePath = b.getString("img");
-        oldCategory = b.getString("category");
+        oldImagePath = b.getString(getString(R.string.epaViewTextoldImagePath));
+        oldCategory = b.getString(getString(R.string.epaViewTextOldCategory));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.productstypes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -137,9 +137,12 @@ public class EditProductActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (mUploadTask != null && mUploadTask.isInProgress())
-                    Toast.makeText(EditProductActivity.this, "Upload Is In Progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProductActivity.this, R.string.epaToastUploadIsInProgress, Toast.LENGTH_SHORT).show();
                 else {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(EditProductActivity.this).setTitle("Confirmation").setMessage("Are You Sure You Want To Save ?!").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(
+                            EditProductActivity.this).setTitle(R.string.epaDialogTitleConfirmation)
+                            .setMessage(R.string.epaDialogMessage)
+                            .setPositiveButton(R.string.epaDialogPositiveButton, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             deleteImage();
@@ -147,7 +150,7 @@ public class EditProductActivity extends AppCompatActivity {
                             uploadData();
                             finish();
                         }
-                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton(R.string.epaDialogNegativeButton, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -226,7 +229,7 @@ public class EditProductActivity extends AppCompatActivity {
                             .child(category)
                             .child(name.getText().toString());
                     z.setValue(product);
-                    Toast.makeText(EditProductActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProductActivity.this, R.string.epaUploadImageToastUploadedSuccessfully, Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

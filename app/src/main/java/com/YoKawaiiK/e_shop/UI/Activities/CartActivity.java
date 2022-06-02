@@ -132,24 +132,26 @@ public class CartActivity extends AppCompatActivity implements NavigationView.On
         else if(id == R.id.MyOrders){
             startActivity(new Intent(CartActivity.this, OrderActivity.class));
         }
+
+
         else if(id== R.id.fruits){
             Intent intent =new Intent(CartActivity.this, CategoryActivity.class);
-            intent.putExtra("Category Name","Fruits");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryFruits));
             startActivity(intent);
         }
         else if(id== R.id.vegetables){
             Intent intent =new Intent(CartActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Vegetables");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryVegetables));
             startActivity(intent);
         }
         else if(id== R.id.meats){
             Intent intent =new Intent(CartActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Meats");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryMeats));
             startActivity(intent);
         }
         else if(id== R.id.electronics){
             Intent intent =new Intent(CartActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Electronics");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryElectronics));
             startActivity(intent);
         }
         else if(id== R.id.Logout){

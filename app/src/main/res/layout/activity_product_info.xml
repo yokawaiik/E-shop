@@ -148,7 +148,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
-                android:text="Shopping Cart"
+                android:text="@string/shopping_cart"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="23dp" />
 
@@ -159,7 +159,7 @@
                 android:layout_below="@id/Text"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
-                android:text="Do you Want to Add this\nproduct to your cart ?"
+                android:text="@string/do_you_want_to_add_this_nproduct_to_your_cart"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="18dp" />
 
@@ -172,7 +172,7 @@
                 android:layout_marginBottom="80dp"
                 android:background="@color/colorPrimary"
                 android:padding="10dp"
-                android:text="Back"
+                android:text="@string/back"
                 android:textColor="@color/primaryTextColor" />
 
             <Button
@@ -185,7 +185,7 @@
                 android:layout_marginBottom="80dp"
                 android:background="@color/colorAccent"
                 android:padding="10dp"
-                android:text="Confirm"
+                android:text="@string/confirm"
                 android:textColor="@color/primaryTextColor" />
 
         </RelativeLayout>

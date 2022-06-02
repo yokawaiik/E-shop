@@ -60,7 +60,7 @@ public class EditOfferActivity extends AppCompatActivity {
         //tool bar
         mToolBar = (Toolbar)findViewById(R.id.EditOffer_ToolBar);
         setSupportActionBar(mToolBar);
-        getSupportActionBar().setTitle("Edit Offer");
+        getSupportActionBar().setTitle(R.string.eoaEditOffer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = findViewById(R.id.editTextOfferNameEdit);
@@ -69,8 +69,8 @@ public class EditOfferActivity extends AppCompatActivity {
         choose = findViewById(R.id.btnChooseOfferImgEdit);
         img = findViewById(R.id.offerImageEdit);
         Bundle b = getIntent().getExtras();
-        name.setText(b.getString("name"));
-        description.setText(b.getString("describtion"));
+        name.setText(b.getString(getString(R.string.eoaViewTextName)));
+        description.setText(b.getString(getString(R.string.eoaViewTextDescription)));
         Picasso.get().load(b.getString("img")).centerCrop().fit().into(img);
         imgUri = Uri.parse(b.getString("img"));
 
@@ -95,9 +95,13 @@ public class EditOfferActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (mUploadTask != null && mUploadTask.isInProgress())
-                    Toast.makeText(EditOfferActivity.this, "Upload Is In Progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditOfferActivity.this, R.string.eoaUploadIsInProgress,
+                            Toast.LENGTH_SHORT).show();
                 else {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(EditOfferActivity.this).setTitle("Confirmation").setMessage("Are You Sure You Want To Save ?!").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(EditOfferActivity.this)
+                            .setTitle(R.string.eoaDialogTitle)
+                            .setMessage(R.string.eoaDialogMessage)
+                            .setPositiveButton(R.string.eoaDialogPositive, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             deleteImage();
@@ -105,7 +109,7 @@ public class EditOfferActivity extends AppCompatActivity {
                             uploadData();
                             finish();
                         }
-                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton(R.string.eoaDialogNegative, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -153,8 +157,9 @@ public class EditOfferActivity extends AppCompatActivity {
 
 
     public void uploadData() {
-        if (name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || imgUri == null) {
-            Toast.makeText(EditOfferActivity.this, "Empty Cells", Toast.LENGTH_SHORT).show();
+        if (name.getText().toString().isEmpty() || description.getText().
+                toString().isEmpty() || imgUri == null) {
+            Toast.makeText(EditOfferActivity.this, R.string.eoaUploadDataToastText, Toast.LENGTH_SHORT).show();
         } else {
             uploadImage();
         }

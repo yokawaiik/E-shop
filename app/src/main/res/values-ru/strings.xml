@@ -107,6 +107,91 @@
     <string name = "admin_add_product_activity__upload_succesfully"> успешно загружена </string>
 
 
+    <string name="do_you_want_to_add_this_nproduct_to_your_cart">Хотите добавить этот\nтовар в корзину?</string>
+    <string name="shopping_cart">Корзина</string>
+    <string name="back">Назад</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="piaListItemProductName">Название продукта</string>
+    <string name="piaListItemProductPrice">Цена товара</string>
+    <string name="piaListItemProductImage">Изображение товара</string>
+    <string name="piaListItemProductExpiryDate">Дата истечения срока действия продукта</string>
+    <string name="piaListItemProductIsFavorite">Продукт является избранным</string>
+    <string name="piaListItemProductIsOffered">Предлагается</string>
+    <string name="piaListItemProduct">Товар успешно добавлен в вашу корзину</string>
+    <string name="piaListItemProductDeletedSuccessfully">Товар успешно удален из вашей корзины</string>
+    <string name="piaSetProductPrice">\"Цена: \"</string>
+    <string name="piaOfferRate">- 30%</string>
+    <string name="piaSetProductExpiryDate">\"Срок действия: \"</string>
+    <string name="piaSetProductDateCategoryFruits">Категория: Фрукты</string>
+    <string name="piaSetProductDateAvailableAmounts">\"Доступные суммы: \"</string>
+    <string name="piaSetProductDateCategoryElectronics">Категория: Электроника</string>
+    <string name="piaSetProductDateCategoryMeats">Категория: мясо</string>
+
+
+    <string name="piaSetProductDateCategoryVegetables">Категория: овощи</string>
+    <string name="navItemSelectedCategoryName">Название категории</string>
+    <string name="checkLogoutMessage">Выйти?</string>
+    <string name="checkLogoutAnswerYes">Да</string>
+    <string name="checkLogoutAnswerNo">Нет</string>
+    <string name="checkLogoutTitle">Выйти</string>
+    <string name="piaPageTitle">Информация о продукте</string>
+    <string name="upaSelectImage">ВЫБЕРИТЕ ИЗОБРАЖЕНИЕ</string>
+    <string name="suaEmptyCells">Пустые ячейки</string>
+    <string name="suaTextRequirePassword">вы должны написать пароль в двух полях</string>
+    <string name="suaTextRegisteredSuccessfully">Успешно зарегистрирован</string>
+    <string name="suaTextRegistrationFailed">регистрация не удалась</string>
+    <string name="suaSelectImage">ВЫБЕРИТЕ ИЗОБРАЖЕНИЕ</string>
+    <string name="oaPageTitle">Мои заказы</string>
+    <string name="maCategoryName">Название категории</string>
+    <string name="constantsAdminBaseEmail">admin@gmail.com</string>
+    <string name="faPageTitle">Избранное</string>
+    <string name="epaTitle">Редактировать товар</string>
+    <string name="epaViewTextName">имя</string>
+    <string name="epaViewTextOldName">имя</string>
+    <string name="epaViewTextQuantity">количество</string>
+
+    <string name="epaViewTextPrice">цена</string>
+    <string name="epaViewTextExpired">истек срок действия</string>
+    <string name="epaViewTextoldImagePath">имг</string>
+    <string name="epaViewTextOldCategory">категория</string>
+    <string name="epaToastUploadIsInProgress">Выполняется загрузка</string>
+    <string name="epaDialogTitleConfirmation">Подтверждение</string>
+    <string name="epaDialogMessage">Вы уверены, что хотите сохранить?!</string>
+    <string name="epaDialogPositiveButton">Да</string>
+    <string name="epaDialogNegativeButton">Нет</string>
+    <string name="epaUploadImageToastUploadedSuccessfully">Загружено успешно</string>
+    <string name="fpaFieldIsEmpty">Поле пусто</string>
+    <string name="eoaEditOffer">Изменить предложение</string>
+    <string name="eoaViewTextName">имя</string>
+    <string name="eoaViewTextDescription">описание</string>
+    <string name="eoaUploadIsInProgress">Выполняется загрузка</string>
+    <string name="eoaDialogTitle">Подтверждение</string>
+    <string name="eoaDialogMessage">Вы уверены, что хотите сохранить?!</string>
+    <string name="eoaDialogPositive">Да</string>
+    <string name="eoaDialogNegative">Нет</string>
+    <string name="eoaUploadDataToastText">Пустые ячейки</string>
+
+    <string name="laEmailValidationRequired">Требуется адрес электронной почты</string>
+    <string name="laPasswordValidationRequired">Требуется пароль</string>
+    <string name="laPasswordValidationMustBeBiggerLength">Пароль должен быть больше или равен 6 символам</string>
+    <string name="constantsAdminBasePassword">пароль</string>
+    <string name="laToastCreator">Добро пожаловать, мой создатель</string>
+    <string name="laToastBase">Вы успешно вошли в систему</string>
+    <string name="laToastError">Неверное имя пользователя или пароль</string>
+    <string name="caClickAnyProductProductName">Название продукта</string>
+    <string name="caClickAnyProductProductPrice">Цена товара</string>
+    <string name="caClickAnyProductProductImage">Изображение товара</string>
+    <string name="caClickAnyProductProductExpiryDate">Дата истечения срока действия продукта</string>
+    <string name="caClickAnyProductProductIsFavorite">Продукт является избранным</string>
+    <string name="caClickAnyProductProductIsOffered">Предлагается</string>
+    <string name="ccaPageTitle">Проверить порядок</string>
+
+
+    <string name="intentStringExtraCategoryName">Category Name</string>
+    <string name="intentStringExtraCategoryFruits">Fruits</string>
+    <string name="intentStringExtraCategoryVegetables">Vegetables</string>
+    <string name="intentStringExtraCategoryMeats">Meats</string>
+    <string name="intentStringExtraCategoryElectronics">Electronics</string>
 
     <string-array name="productstypes">
         <item>Фрукты</item>

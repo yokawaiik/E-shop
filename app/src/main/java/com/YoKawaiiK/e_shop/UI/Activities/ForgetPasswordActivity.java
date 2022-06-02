@@ -50,7 +50,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                     });
                 }
                 else
-                    emailTxt.setError("Field Is Empty");
+                    emailTxt.setError(getString(R.string.fpaFieldIsEmpty));
             }
         });
     }

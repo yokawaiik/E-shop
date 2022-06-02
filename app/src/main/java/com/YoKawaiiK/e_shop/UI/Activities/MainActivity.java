@@ -140,10 +140,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    User my_user = new User();
-                    my_user = ds.getValue(User.class);
-                    my_user.setCategory(ds.getKey().toString());
-                    lastmodels.add(new HorizontalProductModel(my_user.getImage(), my_user.getCategory(), my_user.getPrice(), false,my_user.getExpired()));
+                    User myUser = new User();
+                    myUser = ds.getValue(User.class);
+                    myUser.setCategory(ds.getKey().toString());
+                    lastmodels.add(new HorizontalProductModel(myUser.getImage(), myUser.getCategory(), myUser.getPrice(), false,myUser.getExpired()));
                 }
                 gv.setAdapter(my_adapter);
             }
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-                intent.putExtra("Category Name","Electronics");
+                intent.putExtra(getString(R.string.maCategoryName),"Electronics");
                 startActivity(intent);
             }
         });
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CategoryActivity.class);
-                intent.putExtra("Category Name","Fruits");
+                intent.putExtra(getString(R.string.maCategoryName),"Fruits");
                 startActivity(intent);
             }
         });
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CategoryActivity.class);
-                intent.putExtra("Category Name","Meats");
+                intent.putExtra(getString(R.string.maCategoryName),"Meats");
                 startActivity(intent);
             }
         });
@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CategoryActivity.class);
-                intent.putExtra("Category Name","Vegetables");
+                intent.putExtra(getString(R.string.maCategoryName),"Vegetables");
                 startActivity(intent);
             }
         });
@@ -346,8 +346,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+
     // Прослушиватель для обработки событий в элементах навигации
     @SuppressWarnings("StatementWithEmptyBody")
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -363,24 +365,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(id == R.id.MyOrders){
             startActivity(new Intent(MainActivity.this, OrderActivity.class));
         }
+
+// getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryElectronics)/*/
+
         else if(id== R.id.fruits){
             Intent intent =new Intent(MainActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Fruits");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryFruits));
             startActivity(intent);
         }
         else if(id== R.id.vegetables){
             Intent intent =new Intent(MainActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Vegetables");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryVegetables));
             startActivity(intent);
         }
         else if(id== R.id.meats){
             Intent intent =new Intent(MainActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Meats");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryMeats));
             startActivity(intent);
         }
         else if(id== R.id.electronics){
             Intent intent =new Intent(MainActivity.this,CategoryActivity.class);
-            intent.putExtra("Category Name","Electronics");
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryElectronics));
             startActivity(intent);
         }
         else if (id == R.id.Logout) {

@@ -178,8 +178,8 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
 
     private void CheckLogout(){
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(UserProfileActivity.this);
-        checkAlert.setMessage("Do you want to Logout?")
-                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        checkAlert.setMessage(R.string.checkLogoutMessage)
+                .setCancelable(false).setPositiveButton(R.string.checkLogoutAnswerYes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
@@ -187,7 +187,7 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.checkLogoutAnswerNo, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -195,7 +195,7 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle("LogOut");
+        alert.setTitle(getString(R.string.checkLogoutTitle));
         alert.show();
 
     }
@@ -271,7 +271,7 @@ public class UserProfileActivity extends AppCompatActivity implements Navigation
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "SELECT IMAGE"), GALARY_PICK);
+        startActivityForResult(Intent.createChooser(intent, getString(R.string.upaSelectImage)), GALARY_PICK);
     }
 
     @Override
