@@ -28,22 +28,22 @@ public class CategoryProductInfoAdapter extends RecyclerView.Adapter<CategoryPro
     private FirebaseUser CurrentUser;
     private String UserId;
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-            private RelativeLayout PrContainer;
-            private ImageView ProductImage;
-            private TextView ProductName;
-            private TextView ProductPrice;
-            private TextView ProductExpiryDate;
-            private ImageView PrFavoriteImage;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private RelativeLayout PrContainer;
+        private ImageView ProductImage;
+        private TextView ProductName;
+        private TextView ProductPrice;
+        private TextView ProductExpiryDate;
+        private ImageView PrFavoriteImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            PrContainer = (RelativeLayout)itemView.findViewById(R.id.PrContainer);
-            ProductImage = (ImageView)itemView.findViewById(R.id.PrImage);
-            ProductName = (TextView)itemView.findViewById(R.id.PrName);
-            ProductPrice = (TextView)itemView.findViewById(R.id.PrPrice);
-            ProductExpiryDate = (TextView)itemView.findViewById(R.id.PrExpiryDate);
-            PrFavoriteImage = (ImageView)itemView.findViewById(R.id.PrFavoriteImage);
+            PrContainer = (RelativeLayout) itemView.findViewById(R.id.PrContainer);
+            ProductImage = (ImageView) itemView.findViewById(R.id.PrImage);
+            ProductName = (TextView) itemView.findViewById(R.id.PrName);
+            ProductPrice = (TextView) itemView.findViewById(R.id.PrPrice);
+            ProductExpiryDate = (TextView) itemView.findViewById(R.id.PrExpiryDate);
+            PrFavoriteImage = (ImageView) itemView.findViewById(R.id.PrFavoriteImage);
 
             itemView.setOnClickListener(this);
         }
@@ -58,17 +58,17 @@ public class CategoryProductInfoAdapter extends RecyclerView.Adapter<CategoryPro
     private Context context;
     private List<CategoryProductInfo> ProductList;
 
-    public CategoryProductInfoAdapter(Context context, List<CategoryProductInfo> ProductList, RecyclerViewClickListener listener){
+    public CategoryProductInfoAdapter(Context context, List<CategoryProductInfo> ProductList, RecyclerViewClickListener listener) {
         this.context = context;
         this.ProductList = ProductList;
-        this.listener =listener;
+        this.listener = listener;
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.category_products_list,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.category_products_list, parent, false);
 
         return new ViewHolder(v);
     }
@@ -79,17 +79,19 @@ public class CategoryProductInfoAdapter extends RecyclerView.Adapter<CategoryPro
 
         Picasso.get().load(product.getProductImage()).into(holder.ProductImage);
         holder.ProductName.setText(product.getProductName());
-        holder.ProductPrice.setText("Price: "+product.getProductPrice()+" EGP");
-        holder.ProductExpiryDate.setText("Expiry Date: "+product.getProductExpiryDate());
+        holder.ProductPrice.setText("Price: " + product.getProductPrice() + " EGP");
+        holder.ProductExpiryDate.setText("Expiry Date: " + product.getProductExpiryDate());
 
-        if(product.getProductExpiryDate().equalsIgnoreCase("null")) holder.ProductExpiryDate.setVisibility(View.INVISIBLE);
+        if (product.getProductExpiryDate().equalsIgnoreCase("null"))
+            holder.ProductExpiryDate.setVisibility(View.INVISIBLE);
         else holder.ProductExpiryDate.setVisibility(View.VISIBLE);
 
-        if(product.getIsFavorite())holder.PrFavoriteImage.setImageResource(R.drawable.ic_baseline_favorite_24);
+        if (product.getIsFavorite())
+            holder.PrFavoriteImage.setImageResource(R.drawable.ic_baseline_favorite_24);
         else holder.PrFavoriteImage.setImageResource(R.drawable.ic_baseline_favorite_shadow_24);
 
 
-        //on clicking to favorite icon
+        // значок при нажатии на любимый товар
         holder.PrFavoriteImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,36 +99,32 @@ public class CategoryProductInfoAdapter extends RecyclerView.Adapter<CategoryPro
                 CurrentUser = mAuth.getCurrentUser();
                 UserId = CurrentUser.getUid();
 
-                if(product.getIsFavorite()){
+                if (product.getIsFavorite()) {
                     holder.PrFavoriteImage.setImageResource(R.drawable.ic_baseline_favorite_shadow_24);
                     product.setFavorite(false);
-                    //here delete isFavorite from firebase
-                    DatabaseReference x= FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId);
+                    // удалить isFavorite из firebase
+                    DatabaseReference x = FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId);
                     x.child(product.getProductName()).removeValue();
-                }
-                else{
+                } else {
                     holder.PrFavoriteImage.setImageResource(R.drawable.ic_baseline_favorite_24);
                     product.setFavorite(true);
-                    //here save isFavorite in firebase
-                    DatabaseReference x= FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId).child(product.getProductName());
+                    // сохранить isFavorite в firebase
+                    DatabaseReference x = FirebaseDatabase.getInstance().getReference().child("favourites").child(UserId).child(product.getProductName());
                     x.child("checked").setValue(true);
                     x.child("productimage").setValue(product.getProductImage());
-                    x.child("productprice").setValue("EGP "+product.getProductPrice());
+                    x.child("productprice").setValue("EGP " + product.getProductPrice());
                     x.child("producttitle").setValue(product.getProductName());
-
                 }
             }
         });
 
-        //animation
+        //Анимация
         holder.PrContainer.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
         holder.ProductImage.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
         holder.ProductName.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation));
         holder.ProductPrice.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation));
         holder.ProductExpiryDate.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation));
         holder.PrFavoriteImage.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation));
-
-
     }
 
     @Override
@@ -135,7 +133,7 @@ public class CategoryProductInfoAdapter extends RecyclerView.Adapter<CategoryPro
     }
 
 
-    public interface RecyclerViewClickListener{
+    public interface RecyclerViewClickListener {
         void onClick(View view, int position);
     }
 

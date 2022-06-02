@@ -1,7 +1,7 @@
 package com.YoKawaiiK.e_shop.Model;
 
 public class AdminProduct {
-    private String name, category , expired , image , price , quantity;
+    private String name, category, expired, image, price, quantity;
 
     public AdminProduct(String name, String category, String expired, String image, String price, String quantity) {
         this.name = name;

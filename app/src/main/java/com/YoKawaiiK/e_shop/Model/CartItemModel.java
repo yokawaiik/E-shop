@@ -1,8 +1,8 @@
 package com.YoKawaiiK.e_shop.Model;
 
 public class CartItemModel {
-    public static final int cart_item = 0  ;
-    private  int type;
+    public static final int cart_item = 0;
+    private int type;
 
     //Cart Item
     private String productImage;
@@ -14,7 +14,8 @@ public class CartItemModel {
     private int couponApplied;
     private String producttitle;
     private boolean CartItemDelete = false;
-    public CartItemModel(int type, String productImage , String producttitle, int coupon, int price, int cuttedprice, int quantity, int offerApplied, int couponApplied ) {
+
+    public CartItemModel(int type, String productImage, String producttitle, int coupon, int price, int cuttedprice, int quantity, int offerApplied, int couponApplied) {
         this.type = type;
         this.productImage = productImage;
         this.coupon = coupon;

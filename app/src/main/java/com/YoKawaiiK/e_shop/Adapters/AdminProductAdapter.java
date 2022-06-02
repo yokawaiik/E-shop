@@ -26,12 +26,12 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
     private AdminOfferAdapter.onItemClickListener itemListener;
     private AdminOfferAdapter.onLongClickListener longListener;
 
-    public interface onItemClickListener{
-        void onItemClick(int pos);
-    }
-    public interface onLongClickListener{
-        void onItemLongClick(int pos);
-    }
+//    public interface onItemClickListener{
+//        void onItemClick(int pos);
+//    }
+//    public interface onLongClickListener{
+//        void onItemLongClick(int pos);
+//    }
 
     public void setOnItemClickListener(AdminOfferAdapter.onItemClickListener listener)
     {
@@ -48,12 +48,12 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
         this.adminProducts = adminProducts;
     }
 
-    public void addList(List<AdminProduct> list)
-    {
-        adminProducts.clear();
-        Collections.copy(adminProducts , list);
-        this.notifyDataSetChanged();
-    }
+//    public void addList(List<AdminProduct> list)
+//    {
+//        adminProducts.clear();
+//        Collections.copy(adminProducts , list);
+//        this.notifyDataSetChanged();
+//    }
 
     @NonNull
     @Override

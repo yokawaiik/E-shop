@@ -1,7 +1,7 @@
 package com.YoKawaiiK.e_shop.Model;
 
 public class MyOrderModel {
-  private String OrderID, Date, orderNums, orderPrice, orderProducts, OrderCheck;
+    private String OrderID, Date, orderNums, orderPrice, orderProducts, OrderCheck;
 
     public MyOrderModel(String OrderId, String date, String orderNums, String orderPrice, String orderProducts, String OrderCheck) {
         this.OrderID = OrderId;

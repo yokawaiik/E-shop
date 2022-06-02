@@ -102,40 +102,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onStart() {
         super.onStart();
 
-        //Retrieve Header View User Data
-        Navigation_view_header_data();
-
-        //Retrieve Favourites
-        Retrieve_fav();
-
+        //Получить данные пользователя представления заголовка
+        navigationViewHeaderData();
+        //Получить избранное
+        retrieveFav();
         // FirstView
-        Retrieve_Electroncis();
-
+        retrieveElectroncis();
         // SecondView
-        Retrieve_Fruits();
-
+        retrieveFruits();
         //Third View
-        Retrieve_Meats();
-
+        retrieveMeats();
         // Fourth View
-        Retrieve_Vegatables();
-
+        retrieveVegatables();
         // OFFERS
-        Retrieve_offers();
-
-        //Refresh CartIcon
+        retrieveOffers();
+        //Обновить CartIcon
         showCartIcon();
-
-        //to check if the total price is zero or not
         HandleTotalPriceToZeroIfNotExist();
     }
 
-    public void Retrieve_Electroncis() {
+    // Блок товаров для категории электроника
+    public void retrieveElectroncis() {
         LinearLayout mylayout = (LinearLayout) findViewById(R.id.my_cardView);
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
         TextView gridlayouttitle = mylayout.findViewById(R.id.grid_product_layout_textview);
-//        gridlayouttitle.setText("Electronics");
         gridlayouttitle.setText(R.string.electronics);
         Button GridLayoutViewBtn = mylayout.findViewById(R.id.grid_button_layout_viewall_button);
         final GridView gv = mylayout.findViewById(R.id.product_layout_gridview);
@@ -162,8 +153,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-//        m.addListenerForSingleValueEvent(eventListener);
-
         GridLayoutViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,7 +164,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void Retrieve_fav() {
+    // Получение избранных товаров
+    public void retrieveFav() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("favourites")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         favourites = new ArrayList<>();
@@ -196,7 +186,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ref.addListenerForSingleValueEvent(eventListener);
     }
 
-    public void Retrieve_Fruits() {
+    // Блок товаров для категории фруктов
+    public void retrieveFruits() {
         LinearLayout mylayout = (LinearLayout) findViewById(R.id.my_cardView2);
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
@@ -230,8 +221,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
 
-//        m.addListenerForSingleValueEvent(eventListener);
-
         GridLayoutViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -242,7 +231,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    public void Retrieve_Meats() {
+    // Блок товаров для категории мясо
+    public void retrieveMeats() {
         LinearLayout mylayout = (LinearLayout) findViewById(R.id.my_cardView3);
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
@@ -271,8 +261,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-//        m.addListenerForSingleValueEvent(eventListener);
-
         GridLayoutViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -284,7 +272,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void Retrieve_Vegatables() {
+    // Блок товаров для категории овощей
+    public void retrieveVegatables() {
         LinearLayout mylayout = (LinearLayout) findViewById(R.id.my_cardView4);
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.grid_product_layout, mylayout, false);
@@ -313,8 +302,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-//        m.addListenerForSingleValueEvent(eventListener);
-
         GridLayoutViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -325,7 +312,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    public void Retrieve_offers() {
+    // Блок товаров для предложения
+    public void retrieveOffers() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("offers");
         ModelStandarts = new ArrayList<>();
@@ -358,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-
+    // Прослушиватель для обработки событий в элементах навигации
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -402,10 +390,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-
+    //выход
     private void CheckLogout(){
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(MainActivity.this);
-//        checkAlert.setMessage("Do you want to Logout?")
         checkAlert.setMessage(R.string.message_do_you_want_to_logout)
                 .setCancelable(false).setPositiveButton(R.string.message_button_yes, new DialogInterface.OnClickListener() {
             @Override
@@ -434,7 +421,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStop();
     }
 
-    public void Navigation_view_header_data() {
+    public void navigationViewHeaderData() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("users").child(Uid);
         ValueEventListener eventListener = new ValueEventListener() {
@@ -458,7 +445,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         m.addListenerForSingleValueEvent(eventListener);
     }
 
-
+    // Показать иконку корзины
     private void showCartIcon(){
         //toolbar & cartIcon
         ActionBar actionBar= getSupportActionBar();
@@ -484,7 +471,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
+    // Установить число товаров рядом с иконкой корзины
     private void setNumberOfItemsInCartIcon(){
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(Uid);
@@ -511,7 +498,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         m.addListenerForSingleValueEvent(eventListener);
     }
 
-
+    // ЕсПроверка общей цены товаров в корзине на ноль
     private void HandleTotalPriceToZeroIfNotExist(){
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(Uid);

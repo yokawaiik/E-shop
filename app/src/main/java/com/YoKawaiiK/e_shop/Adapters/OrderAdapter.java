@@ -19,9 +19,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     private List<MyOrderModel> orderItemList;
     private Context context;
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView orderDate, orderNums, orderPrice, orderProducts, OrderCheck;
-        private Button ScanQrCode;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             orderDate = itemView.findViewById(R.id.orderDate);
@@ -55,12 +55,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         holder.orderPrice.setText(model.getOrderPrice());
         holder.orderProducts.setText(model.getOrderProducts());
 
-        if(model.getOrderCheck().equalsIgnoreCase("false")){
+        if (model.getOrderCheck().equalsIgnoreCase("false")) {
             holder.OrderCheck.setText("Order: Pending");
-        }
-        else{
+        } else {
             holder.OrderCheck.setText("Order: Received");
-            holder.ScanQrCode.setVisibility(View.GONE);
         }
 
     }

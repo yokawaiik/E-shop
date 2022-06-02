@@ -3,6 +3,17 @@ package com.YoKawaiiK.e_shop.Model;
 public class Offers {
     String describtion;
     String img;
+    String title;
+
+
+    public Offers() {
+    }
+
+    public Offers(String describtion, String img) {
+        this.describtion = describtion;
+        this.img = img;
+    }
+
 
     public String getTitle() {
         return title;
@@ -10,11 +21,6 @@ public class Offers {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    String title;
-
-    public Offers() {
     }
 
     public String getDescribtion() {
@@ -33,10 +39,5 @@ public class Offers {
         this.img = img;
     }
 
-
-    public Offers(String describtion, String img) {
-        this.describtion = describtion;
-        this.img = img;
-    }
 
 }

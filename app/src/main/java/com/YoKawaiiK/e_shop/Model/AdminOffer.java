@@ -1,7 +1,7 @@
 package com.YoKawaiiK.e_shop.Model;
 
 public class AdminOffer {
-    private String OfferName , OfferDescription;
+    private String OfferName, OfferDescription;
     private String OfferImg;
 
     public AdminOffer(String offerName, String offerDescription, String offerImg) {

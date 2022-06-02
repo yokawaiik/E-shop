@@ -66,7 +66,7 @@ public class GridProductAdapter extends BaseAdapter {
             checkBox = view.findViewById(R.id.check_box);
             Picasso.get().load(horizontalProductModelList.get(position).getProductimage()).into(productImage);
             producttitle.setText(horizontalProductModelList.get(position).getProducttitle());
-            productprice.setText("EGP "+horizontalProductModelList.get(position).getProductprice());
+            productprice.setText("EGP " + horizontalProductModelList.get(position).getProductprice());
 
             boolean isfavourite = false;
             for (int i = 0; i < favourites.size() - 1; i++) {
@@ -112,8 +112,8 @@ public class GridProductAdapter extends BaseAdapter {
                 intent.putExtra("Product Price", horizontalProductModelList.get(position).getProductprice());
                 intent.putExtra("Product Image", horizontalProductModelList.get(position).getProductimage());
                 intent.putExtra("Product ExpiryDate", horizontalProductModelList.get(position).getExpiredDate());
-                intent.putExtra("Product IsFavorite",String.valueOf(horizontalProductModelList.get(position).isChecked()));
-                intent.putExtra("Is Offered","no");
+                intent.putExtra("Product IsFavorite", String.valueOf(horizontalProductModelList.get(position).isChecked()));
+                intent.putExtra("Is Offered", "no");
 
                 context.startActivity(intent);
             }

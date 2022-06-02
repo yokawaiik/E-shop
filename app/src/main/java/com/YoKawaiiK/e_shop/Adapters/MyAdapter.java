@@ -29,7 +29,7 @@ public class MyAdapter extends PagerAdapter {
     private List<Model> models;
     private LayoutInflater layoutInflater;
     private Context context;
-    private String ProductName,ProductPrice,ProductImage,ProductNExpiryDate,ProductIsFavorite;
+    private String ProductName, ProductPrice, ProductImage, ProductNExpiryDate, ProductIsFavorite;
 
     public MyAdapter(List<Model> models, Context context) {
         this.models = models;
@@ -61,7 +61,7 @@ public class MyAdapter extends PagerAdapter {
         title = view.findViewById(R.id.contenttitle);
         desc = view.findViewById(R.id.contenDesc);
         Picasso.get().load(models.get(position).getImage()).into(imageView);
-        title.setText(models.get(position).getTitle()+" Offer");
+        title.setText(models.get(position).getTitle() + " Offer");
         desc.setText(models.get(position).getDesc());
         container.addView(view);
 
@@ -69,7 +69,7 @@ public class MyAdapter extends PagerAdapter {
         OfferCardContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProductIsFavorite="false";
+                ProductIsFavorite = "false";
                 getData(models.get(position).getTitle());
 
             }
@@ -84,91 +84,95 @@ public class MyAdapter extends PagerAdapter {
     }
 
 
-
-
-
-
-    private void getData(final String ProductNamee){
+    private void getData(final String ProductNamee) {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("product");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot dataSnapshot : snapshot.child("Fruits").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductNamee)){
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.child("Fruits").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductNamee)) {
                             ProductName = ProductNamee;
-                            ProductPrice=dataSnapshot.child("price").getValue().toString();
-                            ProductImage=dataSnapshot.child("image").getValue().toString();
-                            ProductNExpiryDate= dataSnapshot.child("expired").getValue().toString();
-                            break;}
+                            ProductPrice = dataSnapshot.child("price").getValue().toString();
+                            ProductImage = dataSnapshot.child("image").getValue().toString();
+                            ProductNExpiryDate = dataSnapshot.child("expired").getValue().toString();
+                            break;
+                        }
                     }
-                    for(DataSnapshot dataSnapshot : snapshot.child("Electronics").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductNamee)){
+                    for (DataSnapshot dataSnapshot : snapshot.child("Electronics").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductNamee)) {
                             ProductName = ProductNamee;
-                            ProductPrice=dataSnapshot.child("price").getValue().toString();
-                            ProductImage=dataSnapshot.child("image").getValue().toString();
-                            ProductNExpiryDate= dataSnapshot.child("expired").getValue().toString();
-                            break;}
-                    }
-
-                    for(DataSnapshot dataSnapshot : snapshot.child("Meats").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductNamee)){
-                            ProductName = ProductNamee;
-                            ProductPrice=dataSnapshot.child("price").getValue().toString();
-                            ProductImage=dataSnapshot.child("image").getValue().toString();
-                            ProductNExpiryDate= dataSnapshot.child("expired").getValue().toString();
-                            break;}
+                            ProductPrice = dataSnapshot.child("price").getValue().toString();
+                            ProductImage = dataSnapshot.child("image").getValue().toString();
+                            ProductNExpiryDate = dataSnapshot.child("expired").getValue().toString();
+                            break;
+                        }
                     }
 
-                    for(DataSnapshot dataSnapshot : snapshot.child("Vegetables").getChildren()){
-                        if(dataSnapshot.getKey().equals(ProductNamee)){
+                    for (DataSnapshot dataSnapshot : snapshot.child("Meats").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductNamee)) {
                             ProductName = ProductNamee;
-                            ProductPrice=dataSnapshot.child("price").getValue().toString();
-                            ProductImage=dataSnapshot.child("image").getValue().toString();
-                            ProductNExpiryDate= dataSnapshot.child("expired").getValue().toString();
-                            break;}
+                            ProductPrice = dataSnapshot.child("price").getValue().toString();
+                            ProductImage = dataSnapshot.child("image").getValue().toString();
+                            ProductNExpiryDate = dataSnapshot.child("expired").getValue().toString();
+                            break;
+                        }
                     }
-                        getIsFav(ProductNamee);
+
+                    for (DataSnapshot dataSnapshot : snapshot.child("Vegetables").getChildren()) {
+                        if (dataSnapshot.getKey().equals(ProductNamee)) {
+                            ProductName = ProductNamee;
+                            ProductPrice = dataSnapshot.child("price").getValue().toString();
+                            ProductImage = dataSnapshot.child("image").getValue().toString();
+                            ProductNExpiryDate = dataSnapshot.child("expired").getValue().toString();
+                            break;
+                        }
+                    }
+                    getIsFav(ProductNamee);
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         m.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    private void getIsFav(final String ProductNamee){
+    private void getIsFav(final String ProductNamee) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         String UserId = mAuth.getCurrentUser().getUid();
 
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("favourites").child(UserId);
-        ValueEventListener valueEventListener =new ValueEventListener() {
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    if(dataSnapshot.getKey().equals(ProductNamee)){
-                        ProductIsFavorite ="true"; break;
-                    }
-                    else ProductIsFavorite = "false";
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    if (dataSnapshot.getKey().equals(ProductNamee)) {
+                        ProductIsFavorite = "true";
+                        break;
+                    } else ProductIsFavorite = "false";
                 }
                 GoToProduct();
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         m.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    private void GoToProduct(){
+    private void GoToProduct() {
         Intent intent = new Intent(context, ProductInfoActivity.class);
-        intent.putExtra("Product Name",ProductName);
-        intent.putExtra("Product Price",ProductPrice);
-        intent.putExtra("Product Image",ProductImage);
-        intent.putExtra("Product ExpiryDate",ProductNExpiryDate);
-        intent.putExtra("Product IsFavorite",ProductIsFavorite);
-        intent.putExtra("Is Offered","yes");
+        intent.putExtra("Product Name", ProductName);
+        intent.putExtra("Product Price", ProductPrice);
+        intent.putExtra("Product Image", ProductImage);
+        intent.putExtra("Product ExpiryDate", ProductNExpiryDate);
+        intent.putExtra("Product IsFavorite", ProductIsFavorite);
+        intent.putExtra("Is Offered", "yes");
         context.startActivity(intent);
     }
 }

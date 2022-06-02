@@ -39,6 +39,7 @@ import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+// Экран проверки корзины
 public class CartCheckActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     String ttlPrice , DelPrice , ttlPrice2 , saved;
     DatabaseReference root;

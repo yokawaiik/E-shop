@@ -42,6 +42,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+// Экран добавления продукта админом
 public class AdminAddProductActivity extends AppCompatActivity {
     private TextInputEditText name, quantity, price, expDate;
     private Button add, choose;
@@ -61,19 +62,19 @@ public class AdminAddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         //tool bar
-        mToolBar = (Toolbar)findViewById(R.id.AddProduct_ToolBar);
+        mToolBar = (Toolbar) findViewById(R.id.AddProduct_ToolBar);
         setSupportActionBar(mToolBar);
         getSupportActionBar().setTitle(R.string.admin_add_product_activity__add_product);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         name = (TextInputEditText) findViewById(R.id.editTextProductName);
-        quantity =(TextInputEditText) findViewById(R.id.editTextProductNumber);
+        quantity = (TextInputEditText) findViewById(R.id.editTextProductNumber);
         add = (Button) findViewById(R.id.btnAdd);
-        choose = (Button)findViewById(R.id.btnChooseImg);
+        choose = (Button) findViewById(R.id.btnChooseImg);
         img = (ImageView) findViewById(R.id.imgProduct);
-        price =(TextInputEditText) findViewById(R.id.editTextProductPrice);
-        expDate =(TextInputEditText) findViewById(R.id.editTextProductExpire);
-        spinner = (Spinner)findViewById(R.id.spinner);
+        price = (TextInputEditText) findViewById(R.id.editTextProductPrice);
+        expDate = (TextInputEditText) findViewById(R.id.editTextProductExpire);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
         nameLayout = (TextInputLayout) findViewById(R.id.editTextProductNameLayout);
         quantityLayout = (TextInputLayout) findViewById(R.id.editTextProductNumberLayout);
@@ -247,10 +248,9 @@ public class AdminAddProductActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (mUploadTask != null && mUploadTask.isInProgress())
                     Toast.makeText(AdminAddProductActivity.this, getString(R.string.admin_add_product_activity__upload_is_in_progress), Toast.LENGTH_SHORT).show();
-                else if (name.getText().toString().isEmpty() || quantity.getText().toString().isEmpty() || price.getText().toString().isEmpty() || expDate.getText().toString().isEmpty() || imgUri == null){
+                else if (name.getText().toString().isEmpty() || quantity.getText().toString().isEmpty() || price.getText().toString().isEmpty() || expDate.getText().toString().isEmpty() || imgUri == null) {
                     Toast.makeText(AdminAddProductActivity.this, getString(R.string.admin_add_product_activity__empty_cells), Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     uploadData();
                     Toast.makeText(AdminAddProductActivity.this, getString(R.string.admin_add_product_activity__upload_succesfully), Toast.LENGTH_SHORT).show();
                     finish();
@@ -332,19 +332,19 @@ public class AdminAddProductActivity extends AppCompatActivity {
         }
     }
 
-    private void NotshowCartIcon(){
+    private void NotshowCartIcon() {
         //toolbar & cartIcon
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view= inflater.inflate(R.layout.buyer_toolbar,null);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.buyer_toolbar, null);
         //actionBar.setCustomView(view);
 
         //************custom action items xml**********************
-        CustomCartContainer = (RelativeLayout)findViewById(R.id.CustomCartIconContainer);
-        PageTitle =(TextView)findViewById(R.id.PageTitle);
+        CustomCartContainer = (RelativeLayout) findViewById(R.id.CustomCartIconContainer);
+        PageTitle = (TextView) findViewById(R.id.PageTitle);
         PageTitle.setVisibility(View.GONE);
         CustomCartContainer.setVisibility(View.GONE);
 

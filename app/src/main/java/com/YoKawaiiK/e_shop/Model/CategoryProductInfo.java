@@ -7,11 +7,11 @@ public class CategoryProductInfo {
     private String ProductExpiryDate;
     private boolean IsFavorite;
 
-    public CategoryProductInfo(){
+    public CategoryProductInfo() {
 
     }
 
-    public CategoryProductInfo(String ProductImage, String ProductName, String ProductPrice, String ProductExpiryDate, boolean IsFavorite){
+    public CategoryProductInfo(String ProductImage, String ProductName, String ProductPrice, String ProductExpiryDate, boolean IsFavorite) {
         this.ProductImage = ProductImage;
         this.ProductName = ProductName;
         this.ProductPrice = ProductPrice;

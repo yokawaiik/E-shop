@@ -4,9 +4,9 @@ public class AdminOptions {
     private String OptionName;
     private int OptionResourceId;
 
-    public AdminOptions(String OptionName, int OptionResourceId ){
-        this.OptionName=OptionName;
-        this.OptionResourceId= OptionResourceId;
+    public AdminOptions(String OptionName, int OptionResourceId) {
+        this.OptionName = OptionName;
+        this.OptionResourceId = OptionResourceId;
     }
 
     public String getOptionName() {

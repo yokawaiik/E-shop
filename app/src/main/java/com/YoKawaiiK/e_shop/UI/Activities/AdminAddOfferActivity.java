@@ -39,14 +39,16 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+
+// Экран добавления предложения
 public class AdminAddOfferActivity extends AppCompatActivity {
-    private TextInputEditText name , description;
-    private Button add , choose;
+    private TextInputEditText name, description;
+    private Button add, choose;
     private ImageView img;
     private Uri imgUri;
     private StorageReference mStorageRef;
     private StorageTask mUploadTask;
-    private TextInputLayout nameTextInputLayout , descTextInputLayout;
+    private TextInputLayout nameTextInputLayout, descTextInputLayout;
     private Toolbar mToolBar;
     private RelativeLayout CustomCartContainer;
     private TextView PageTitle;
@@ -57,9 +59,8 @@ public class AdminAddOfferActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_offer);
 
         //tool bar
-        mToolBar = (Toolbar)findViewById(R.id.AddOffer_ToolBar);
+        mToolBar = (Toolbar) findViewById(R.id.AddOffer_ToolBar);
         setSupportActionBar(mToolBar);
-//        getSupportActionBar().setTitle("Add Offer");
         getSupportActionBar().setTitle(R.string.admin_add_offer_activity__add_offer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -76,14 +77,10 @@ public class AdminAddOfferActivity extends AppCompatActivity {
         nameTextInputLayout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if(name.getText().toString().trim().isEmpty())
-                {
+                if (name.getText().toString().trim().isEmpty()) {
                     nameTextInputLayout.setErrorEnabled(true);
                     nameTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
-//                    nameTextInputLayout.setError(R.string.error__please_enter_offer_name);
-                }
-                else
-                {
+                } else {
                     nameTextInputLayout.setErrorEnabled(false);
                 }
             }
@@ -92,19 +89,17 @@ public class AdminAddOfferActivity extends AppCompatActivity {
         descTextInputLayout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if(description.getText().toString().trim().isEmpty())
-                {
+                if (description.getText().toString().trim().isEmpty()) {
                     descTextInputLayout.setErrorEnabled(true);
 
                     descTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
-                }
-                else
-                {
+                } else {
                     descTextInputLayout.setErrorEnabled(false);
                 }
             }
         });
 
+        //  Для валидации
         name.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -113,13 +108,10 @@ public class AdminAddOfferActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(name.getText().toString().trim().isEmpty())
-                {
+                if (name.getText().toString().trim().isEmpty()) {
                     nameTextInputLayout.setErrorEnabled(true);
                     nameTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
-                }
-                else
-                {
+                } else {
                     nameTextInputLayout.setErrorEnabled(false);
                 }
             }
@@ -130,6 +122,7 @@ public class AdminAddOfferActivity extends AppCompatActivity {
             }
         });
 
+        //  Для валидации
         description.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -138,13 +131,10 @@ public class AdminAddOfferActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(description.getText().toString().trim().isEmpty())
-                {
+                if (description.getText().toString().trim().isEmpty()) {
                     descTextInputLayout.setErrorEnabled(true);
                     descTextInputLayout.setError(getString(R.string.error__please_enter_offer_name));
-                }
-                else
-                {
+                } else {
                     descTextInputLayout.setErrorEnabled(false);
                 }
             }
@@ -155,24 +145,20 @@ public class AdminAddOfferActivity extends AppCompatActivity {
             }
         });
 
-
+        // Добавить
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mUploadTask != null && mUploadTask.isInProgress())
+                if (mUploadTask != null && mUploadTask.isInProgress())
                     Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__upload_is_in_progress), Toast.LENGTH_SHORT).show();
-                else if(name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || imgUri == null)
-                {
+                else if (name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || imgUri == null) {
                     Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__empty_cells), Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
                     try {
                         uploadData();
                         Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__added_successfully), Toast.LENGTH_SHORT).show();
                         finish();
-                    }catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         Toast.makeText(AdminAddOfferActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -180,6 +166,7 @@ public class AdminAddOfferActivity extends AppCompatActivity {
             }
         });
 
+        //  Выбор изображения
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,30 +184,26 @@ public class AdminAddOfferActivity extends AppCompatActivity {
         NotshowCartIcon();
     }
 
-    public void uploadData()
-    {
-        if(name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || imgUri == null)
-        {
+    // Отображение тоста
+    public void uploadData() {
+        if (name.getText().toString().isEmpty() || description.getText().toString().isEmpty() || imgUri == null) {
             Toast.makeText(AdminAddOfferActivity.this, getString(R.string.admin_add_offer_activity__empty_cells), Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+        } else {
             uploadImage();
         }
     }
 
-    public void uploadImage()
-    {
-        if(imgUri != null)
-        {
+    //  Зарузка изображения
+    public void uploadImage() {
+        if (imgUri != null) {
             StorageReference fileReference = mStorageRef.child(name.getText().toString() + "." + getFileExtension(imgUri));
             mUploadTask = fileReference.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while (!urlTask.isSuccessful());
+                    while (!urlTask.isSuccessful()) ;
                     Uri downloadUrl = urlTask.getResult();
-                    Offer offer = new Offer(description.getText().toString().trim() ,
+                    Offer offer = new Offer(description.getText().toString().trim(),
                             downloadUrl.toString());
                     DatabaseReference z = FirebaseDatabase.getInstance().getReference("offers");
                     z.child(name.getText().toString().trim()).setValue(offer);
@@ -234,50 +217,51 @@ public class AdminAddOfferActivity extends AppCompatActivity {
         }
     }
 
-    public void openImage()
-    {
-        Intent i =  new Intent();
+    // Открыть изображение
+    public void openImage() {
+        Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(i , SignUpActivity.GALARY_PICK);
+        startActivityForResult(i, SignUpActivity.GALARY_PICK);
     }
 
-    public String getFileExtension(Uri uri)
-    {
+    // Расширение файла
+    public String getFileExtension(Uri uri) {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
+    // Получение изображения при выборе в галерее
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == SignUpActivity.GALARY_PICK && resultCode == Activity.RESULT_OK && data != null)
-        {
+        if (requestCode == SignUpActivity.GALARY_PICK && resultCode == Activity.RESULT_OK && data != null) {
             imgUri = data.getData();
-            Log.e("uri" , imgUri.toString());
+            Log.e("uri", imgUri.toString());
             try {
                 Picasso.get().load(imgUri).fit().centerCrop().into(img);
             } catch (Exception e) {
-                Log.e(this.toString() , e.getMessage().toString());
+                Log.e(this.toString(), e.getMessage().toString());
             }
         }
     }
 
-    private void NotshowCartIcon(){
+    // Спрятать иконку
+    private void NotshowCartIcon() {
         //toolbar & cartIcon
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view= inflater.inflate(R.layout.buyer_toolbar,null);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.buyer_toolbar, null);
         //actionBar.setCustomView(view);
 
         //************custom action items xml**********************
-        CustomCartContainer = (RelativeLayout)findViewById(R.id.CustomCartIconContainer);
-        PageTitle =(TextView)findViewById(R.id.PageTitle);
+        CustomCartContainer = (RelativeLayout) findViewById(R.id.CustomCartIconContainer);
+        PageTitle = (TextView) findViewById(R.id.PageTitle);
         PageTitle.setVisibility(View.GONE);
         CustomCartContainer.setVisibility(View.GONE);
 

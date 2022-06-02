@@ -25,20 +25,19 @@ public class AdminOfferAdapter extends RecyclerView.Adapter<AdminOfferAdapter.Vi
     private onItemClickListener itemListener;
     private onLongClickListener longListener;
 
-    public interface onItemClickListener{
+    public interface onItemClickListener {
         void onItemClick(int pos);
     }
-    public interface onLongClickListener{
+
+    public interface onLongClickListener {
         void onItemLongClick(int pos);
     }
 
-    public void setOnItemClickListener(onItemClickListener listener)
-    {
+    public void setOnItemClickListener(onItemClickListener listener) {
         itemListener = listener;
     }
 
-    public void setOnLongClickListener(onLongClickListener listener)
-    {
+    public void setOnLongClickListener(onLongClickListener listener) {
         longListener = listener;
     }
 
@@ -48,24 +47,23 @@ public class AdminOfferAdapter extends RecyclerView.Adapter<AdminOfferAdapter.Vi
         this.offers = offers;
     }
 
-    public void addList(List<AdminOffer> list)
-    {
-        offers.clear();
-        Collections.copy(offers , list);
-        this.notifyDataSetChanged();
-    }
+//    public void addList(List<AdminOffer> list) {
+//        offers.clear();
+//        Collections.copy(offers, list);
+//        this.notifyDataSetChanged();
+//    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.admin_options_list , parent , false);
-        return new ViewHolder(v , itemListener , longListener);
+        View v = LayoutInflater.from(context).inflate(R.layout.admin_options_list, parent, false);
+        return new ViewHolder(v, itemListener, longListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.cardView.setAnimation(AnimationUtils.loadAnimation(context , R.anim.fade_scale_animation));
-        holder.img.setAnimation(AnimationUtils.loadAnimation(context , R.anim.fade_transition_animation));
+        holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
+        holder.img.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation));
         Picasso.get().load(offers.get(position).getOfferImg()).centerCrop().fit().into(holder.img);
         holder.name.setText(offers.get(position).getOfferName());
         holder.description.setText(offers.get(position).getOfferDescription());
@@ -76,12 +74,13 @@ public class AdminOfferAdapter extends RecyclerView.Adapter<AdminOfferAdapter.Vi
         return offers.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img;
-        TextView name , description;
+        TextView name, description;
         CardView cardView;
-        public ViewHolder(@NonNull View itemView , final onItemClickListener itemlistener , final onLongClickListener longClickListener) {
+
+        public ViewHolder(@NonNull View itemView, final onItemClickListener itemlistener, final onLongClickListener longClickListener) {
             super(itemView);
             img = itemView.findViewById(R.id.adapterOfferImage);
             name = itemView.findViewById(R.id.adapterOfferName);
@@ -91,11 +90,9 @@ public class AdminOfferAdapter extends RecyclerView.Adapter<AdminOfferAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(itemlistener != null)
-                    {
+                    if (itemlistener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
-                        {
+                        if (position != RecyclerView.NO_POSITION) {
                             itemlistener.onItemClick(position);
                         }
                     }
@@ -105,9 +102,9 @@ public class AdminOfferAdapter extends RecyclerView.Adapter<AdminOfferAdapter.Vi
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    if(longClickListener != null){
+                    if (longClickListener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
+                        if (position != RecyclerView.NO_POSITION)
                             longClickListener.onItemLongClick(position);
                     }
                     return false;
