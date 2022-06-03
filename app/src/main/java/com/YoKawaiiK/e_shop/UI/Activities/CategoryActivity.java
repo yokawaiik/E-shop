@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,6 +70,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
 
         CategoryName = getIntent().getStringExtra(getString(R.string.intentStringExtraCategoryName));
 
+        Log.i("CategoryActivity-CategoryName",CategoryName);
 
         //on clicking any product (go to ProductInfo Activity to show it's info)
         onClickAnyProduct();
@@ -99,12 +101,12 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 CategoryProductInfo product = CategoryProducts.get(position);
 
                 Intent intent = new Intent(CategoryActivity.this, ProductInfoActivity.class);
-                intent.putExtra(getString(R.string.caClickAnyProductProductName), product.getProductName());
-                intent.putExtra(getString(R.string.caClickAnyProductProductPrice), product.getProductPrice());
-                intent.putExtra(getString(R.string.caClickAnyProductProductImage), product.getProductImage());
-                intent.putExtra(getString(R.string.caClickAnyProductProductExpiryDate), product.getProductExpiryDate());
-                intent.putExtra(getString(R.string.caClickAnyProductProductIsFavorite), String.valueOf(product.getIsFavorite()));
-                intent.putExtra(getString(R.string.caClickAnyProductProductIsOffered), "no");
+                intent.putExtra(getString(R.string.intentStringExtraProductName), product.getProductName());
+                intent.putExtra(getString(R.string.intentStringExtraProductPrice), product.getProductPrice());
+                intent.putExtra(getString(R.string.intentStringExtraProductImage), product.getProductImage());
+                intent.putExtra(getString(R.string.intentStringExtraProductExpiryDate), product.getProductExpiryDate());
+                intent.putExtra(getString(R.string.intentStringExtraProductIsFavorite), String.valueOf(product.getIsFavorite()));
+                intent.putExtra(getString(R.string.intentStringExtraIsOffered), "no");
 
                 startActivity(intent);
             }
@@ -121,8 +123,11 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         recyclerView = (RecyclerView) findViewById(R.id.CategoryRecycler);
         CategoryProducts = new ArrayList<>();
 
-        adapter = new CategoryProductInfoAdapter(CategoryActivity.this, CategoryProducts, listener);
+        adapter = new CategoryProductInfoAdapter(CategoryActivity.this,
+                CategoryProducts, listener);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(CategoryActivity.this));
+
         recyclerView.setAdapter(adapter);
 
         getProductsData();
@@ -134,6 +139,10 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     private void getProductsData() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("product").child(CategoryName);
+
+//        Log.i("CategoryActivity-CategoryName");
+
+
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -236,19 +245,17 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
             startActivity(new Intent(CategoryActivity.this, OrderActivity.class));
         } else if (id == R.id.favourites) {
             startActivity(new Intent(CategoryActivity.this, FavouritesActivity.class));
-        }
-
-        else if (id == R.id.fruits) {
-            CategoryName =  getString(R.string.intentStringExtraCategoryFruits);
+        } else if (id == R.id.fruits) {
+            CategoryName = "Fruits";
             setCategoryData();
         } else if (id == R.id.vegetables) {
-            CategoryName = getString(R.string.intentStringExtraCategoryVegetables);
+            CategoryName = "Vegetables";
             setCategoryData();
         } else if (id == R.id.meats) {
-            CategoryName = getString(R.string.intentStringExtraCategoryMeats);
+            CategoryName = "Meats";
             setCategoryData();
         } else if (id == R.id.electronics) {
-            CategoryName = getString(R.string.intentStringExtraCategoryElectronics);
+            CategoryName = "Electronics";
             setCategoryData();
         } else if (id == R.id.Logout) {
             CheckLogout();
@@ -257,10 +264,11 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         return true;
     }
 
+
     private void CheckLogout() {
         AlertDialog.Builder checkAlert = new AlertDialog.Builder(CategoryActivity.this);
-        checkAlert.setMessage(R.string.checkLogoutMessage)
-                .setCancelable(false).setPositiveButton(R.string.checkLogoutAnswerYes, new DialogInterface.OnClickListener() {
+        checkAlert.setMessage("Do you want to Logout?")
+                .setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
@@ -268,7 +276,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 startActivity(intent);
                 finish();
             }
-        }).setNegativeButton(R.string.checkLogoutAnswerNo, new DialogInterface.OnClickListener() {
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
@@ -276,7 +284,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
         });
 
         AlertDialog alert = checkAlert.create();
-        alert.setTitle(getString(R.string.checkLogoutTitle));
+        alert.setTitle("LogOut");
         alert.show();
 
     }

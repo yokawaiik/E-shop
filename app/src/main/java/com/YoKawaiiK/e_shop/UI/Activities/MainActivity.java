@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-                intent.putExtra(getString(R.string.maCategoryName),"Electronics");
+                intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryElectronics));
                 startActivity(intent);
             }
         });
@@ -173,8 +173,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    FavouritesClass fav = new FavouritesClass();
-                    fav = ds.getValue(FavouritesClass.class);
+//                    FavouritesClass fav = new FavouritesClass();
+
+                    FavouritesClass fav = new FavouritesClass(
+                            String.valueOf(ds.child("productimage").getValue()),
+                            String.valueOf(ds.child("producttitle").getValue()),
+                            String.valueOf(ds.child("productprice").getValue()),
+                            String.valueOf(ds.child("expiredDate").getValue()),
+                            Boolean.valueOf(String.valueOf(ds.child("checked").getValue()))
+                    );
+
+//                    fav = ds.getValue(FavouritesClass.class);
                     favourites.add(fav);
                 }
             }
@@ -225,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CategoryActivity.class);
-                intent.putExtra(getString(R.string.maCategoryName),"Fruits");
+                intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryFruits));
                 startActivity(intent);
             }
         });
@@ -265,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CategoryActivity.class);
-                intent.putExtra(getString(R.string.maCategoryName),"Meats");
+                intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryMeats));
                 startActivity(intent);
             }
         });
@@ -306,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,CategoryActivity.class);
-                intent.putExtra(getString(R.string.maCategoryName),"Vegetables");
+                intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryVegetables));
                 startActivity(intent);
             }
         });
@@ -365,8 +374,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(id == R.id.MyOrders){
             startActivity(new Intent(MainActivity.this, OrderActivity.class));
         }
-
-// getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryElectronics)/*/
 
         else if(id== R.id.fruits){
             Intent intent =new Intent(MainActivity.this,CategoryActivity.class);

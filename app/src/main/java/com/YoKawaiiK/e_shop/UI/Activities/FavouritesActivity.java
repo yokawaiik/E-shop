@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.YoKawaiiK.e_shop.Adapters.AdminOfferAdapter;
+import com.YoKawaiiK.e_shop.Adapters.CategoryProductInfoAdapter;
 import com.YoKawaiiK.e_shop.Adapters.MyAdapterRecyclerView;
 import com.YoKawaiiK.e_shop.Model.FavouritesClass;
 import com.YoKawaiiK.e_shop.R;
@@ -36,7 +39,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -56,6 +58,11 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
     private TextView PageTitle;
     private TextView CustomCartNumber;
 
+
+    ArrayList<FavouritesClass> favouriteList;
+//    private ArrayList<CategoryProductInfo> CategoryProducts;
+    private MyAdapterRecyclerView.onItemClickListener listener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +80,10 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         //define Navigation Viewer and got its data
         DefineNavigation();
 
+        retrieveFav();
+        //on clicking any product (go to ProductInfo Activity to show it's info)
+        onClickAnyProduct();
+
     }
 
     @Override
@@ -89,7 +100,7 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item))return true;
+        if (mToggle.onOptionsItemSelected(item)) return true;
         return super.onOptionsItemSelected(item);
     }
 
@@ -98,43 +109,34 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         int id = menuItem.getItemId();
         if (id == R.id.Home) {
             startActivity(new Intent(FavouritesActivity.this, MainActivity.class));
-        }
-        else if (id == R.id.Profile) {
+        } else if (id == R.id.Profile) {
             startActivity(new Intent(FavouritesActivity.this, UserProfileActivity.class));
-        }
-        else if(id == R.id.Cart){
+        } else if (id == R.id.Cart) {
             startActivity(new Intent(FavouritesActivity.this, CartActivity.class));
-        }
-        else if(id == R.id.MyOrders){
+        } else if (id == R.id.MyOrders) {
             startActivity(new Intent(FavouritesActivity.this, OrderActivity.class));
-        }
-        else if(id== R.id.fruits){
-            Intent intent =new Intent(FavouritesActivity.this, CategoryActivity.class);
+        } else if (id == R.id.fruits) {
+            Intent intent = new Intent(FavouritesActivity.this, CategoryActivity.class);
             intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryFruits));
             startActivity(intent);
-        }
-        else if(id== R.id.vegetables){
-            Intent intent =new Intent(FavouritesActivity.this,CategoryActivity.class);
-            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryVegetables));
+        } else if (id == R.id.vegetables) {
+            Intent intent = new Intent(FavouritesActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryVegetables));
             startActivity(intent);
-        }
-        else if(id== R.id.meats){
-            Intent intent =new Intent(FavouritesActivity.this,CategoryActivity.class);
-            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryMeats));
+        } else if (id == R.id.meats) {
+            Intent intent = new Intent(FavouritesActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryMeats));
             startActivity(intent);
-        }
-        else if(id== R.id.electronics){
-            Intent intent =new Intent(FavouritesActivity.this,CategoryActivity.class);
-            intent.putExtra(getString(R.string.intentStringExtraCategoryName),getString(R.string.intentStringExtraCategoryElectronics));
+        } else if (id == R.id.electronics) {
+            Intent intent = new Intent(FavouritesActivity.this, CategoryActivity.class);
+            intent.putExtra(getString(R.string.intentStringExtraCategoryName), getString(R.string.intentStringExtraCategoryElectronics));
             startActivity(intent);
-        }
-        else if (id == R.id.Logout) {
+        } else if (id == R.id.Logout) {
             CheckLogout();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
     private void CheckLogout() {
@@ -180,7 +182,7 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         getNavHeaderData();
     }
 
-    public void Retrieve_fav() {
+    public void retrieveFav() {
         LinearLayout mylayout = (LinearLayout) findViewById(R.id.recyclerViewlayout);
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.favourite_recycler_view, mylayout, false);
@@ -190,19 +192,45 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         GridLayoutManager mGridLayoutManager;
         mGridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         rc.setLayoutManager(mGridLayoutManager);
-        final List<FavouritesClass> favourite_list = new ArrayList<>();
+        favouriteList = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("favourites")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        my_adapter = new MyAdapterRecyclerView(listener, favouriteList);
+        rc.setAdapter(my_adapter);
+
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    FavouritesClass fav = new FavouritesClass();
-                    fav = ds.getValue(FavouritesClass.class);
-                    favourite_list.add(fav);
+                    Log.i("FavoritesActivity-retrieveFav", String.valueOf(ds.child("producttitle").getValue()));
+                    Log.i("FavoritesActivity-retrieveFav", String.valueOf(ds.child("expiredDate").getValue()));
+                    Log.i("FavoritesActivity-retrieveFav", String.valueOf(ds.child("checked").getValue()));
+                    Log.i("FavoritesActivity-retrieveFav", String.valueOf(ds.child("productprice").getValue()));
+                    Log.i("FavoritesActivity-retrieveFav", String.valueOf(ds.child("productimage").getValue()));
+
+                    FavouritesClass fav = new FavouritesClass(
+                            String.valueOf(ds.child("productimage").getValue()),
+                            String.valueOf(ds.child("producttitle").getValue()),
+                            String.valueOf(ds.child("productprice").getValue()),
+                            String.valueOf(ds.child("expiredDate").getValue()),
+                            Boolean.valueOf(String.valueOf(ds.child("checked").getValue()))
+                    );
+
+//                    String productImage,
+//                    String productTitle,
+//                    String productPrice,
+//                    String productExpiryDate,
+//                    boolean isFavorite
+
+//                    FavouritesClass fav = new FavouritesClass();
+
+//                    fav = ds.getValue(FavouritesClass.class);
+                    favouriteList.add(fav);
+                    my_adapter.notifyDataSetChanged();
                 }
-                my_adapter = new MyAdapterRecyclerView(favourite_list);
-                rc.setAdapter(my_adapter);
+//                my_adapter = new MyAdapterRecyclerView(listener, favouriteList);
+//                rc.setAdapter(my_adapter);
             }
 
             @Override
@@ -211,6 +239,48 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
         };
         ref.addListenerForSingleValueEvent(eventListener);
     }
+
+
+//    adapter.setOnItemClickListener(new AdminOfferAdapter.onItemClickListener() {
+//        @Override
+//        public void onItemClick(int pos) {
+//            Intent i = new Intent(getActivity(), EditProductActivity.class);
+//            Bundle b = new Bundle();
+//            b.putString("img", adminProducts.get(pos).getImage());
+//            b.putString("name", adminProducts.get(pos).getName());
+//            b.putString("category", adminProducts.get(pos).getCategory());
+//            b.putString("expired", adminProducts.get(pos).getExpired());
+//            b.putString("price", adminProducts.get(pos).getPrice());
+//            b.putString("quantity", adminProducts.get(pos).getQuantity());
+//            i.putExtras(b);
+//            startActivity(i);
+//        }
+//    });
+
+
+    private void onClickAnyProduct() {
+
+        listener = new MyAdapterRecyclerView.onItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                FavouritesClass fav = favouriteList.get(pos);
+
+                Log.i("FavoritesActivity", String.valueOf(fav));
+
+                Intent intent = new Intent(FavouritesActivity.this, ProductInfoActivity.class);
+                intent.putExtra(getString(R.string.intentStringExtraProductName), fav.getProductTitle());
+                intent.putExtra(getString(R.string.intentStringExtraProductPrice), fav.getProductPrice());
+                intent.putExtra(getString(R.string.intentStringExtraProductImage), fav.getProductImage());
+                intent.putExtra(getString(R.string.intentStringExtraProductExpiryDate), fav.getProductExpiryDate());
+                intent.putExtra(getString(R.string.intentStringExtraProductIsFavorite), String.valueOf(fav.isFavorite()));
+                intent.putExtra(getString(R.string.intentStringExtraIsOffered), "no");
+
+                startActivity(intent);
+            }
+
+        };
+    }
+
 
     private void getNavHeaderData() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
@@ -234,24 +304,24 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
             }
         };
         m.addListenerForSingleValueEvent(valueEventListener);
-        Retrieve_fav();
+//        retrieveFav();
     }
 
 
-    private void showCartIcon(){
+    private void showCartIcon() {
         //toolbar & cartIcon
-        ActionBar actionBar= getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowCustomEnabled(true);
 
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view= inflater.inflate(R.layout.buyer_toolbar,null);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.buyer_toolbar, null);
         actionBar.setCustomView(view);
 
         //************custom action items xml**********************
-        CustomCartContainer = (RelativeLayout)findViewById(R.id.CustomCartIconContainer);
-        PageTitle =(TextView)findViewById(R.id.PageTitle);
-        CustomCartNumber = (TextView)findViewById(R.id.CustomCartNumber);
+        CustomCartContainer = (RelativeLayout) findViewById(R.id.CustomCartIconContainer);
+        PageTitle = (TextView) findViewById(R.id.PageTitle);
+        CustomCartNumber = (TextView) findViewById(R.id.CustomCartNumber);
 
         PageTitle.setText(R.string.faPageTitle);
         setNumberOfItemsInCartIcon();
@@ -266,33 +336,32 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
     }
 
 
-    private void setNumberOfItemsInCartIcon(){
+    private void setNumberOfItemsInCartIcon() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(UserId);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    if(dataSnapshot.getChildrenCount()==1){
+                    if (dataSnapshot.getChildrenCount() == 1) {
                         CustomCartNumber.setVisibility(View.GONE);
-                    }
-                    else {
+                    } else {
                         CustomCartNumber.setVisibility(View.VISIBLE);
-                        CustomCartNumber.setText(String.valueOf(dataSnapshot.getChildrenCount()-1));
+                        CustomCartNumber.setText(String.valueOf(dataSnapshot.getChildrenCount() - 1));
                     }
-                }
-                else{
+                } else {
                     CustomCartNumber.setVisibility(View.GONE);
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         m.addListenerForSingleValueEvent(eventListener);
     }
 
-    private void HandleTotalPriceToZeroIfNotExist(){
+    private void HandleTotalPriceToZeroIfNotExist() {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
         DatabaseReference m = root.child("cart").child(UserId);
         ValueEventListener eventListener = new ValueEventListener() {
@@ -304,7 +373,8 @@ public class FavouritesActivity extends AppCompatActivity implements NavigationV
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
         };
         m.addListenerForSingleValueEvent(eventListener);
 

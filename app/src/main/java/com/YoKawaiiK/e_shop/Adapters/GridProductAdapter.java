@@ -70,7 +70,7 @@ public class GridProductAdapter extends BaseAdapter {
 
             boolean isfavourite = false;
             for (int i = 0; i < favourites.size() - 1; i++) {
-                if (horizontalProductModelList.get(position).getProducttitle().equals(favourites.get(i).getProducttitle())) {
+                if (horizontalProductModelList.get(position).getProducttitle().equals(favourites.get(i).getProductTitle())) {
                     isfavourite = true;
                     horizontalProductModelList.get(position).setChecked(true);
                     break;

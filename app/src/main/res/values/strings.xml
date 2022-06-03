@@ -184,6 +184,12 @@
     <string name="caClickAnyProductProductIsFavorite">Product IsFavorite</string>
     <string name="caClickAnyProductProductIsOffered">Is Offered</string>
     <string name="ccaPageTitle">Check Order</string>
+    <string name="intentStringExtraProductName">Product Name</string>
+    <string name="intentStringExtraProductPrice">Product Price</string>
+    <string name="intentStringExtraProductImage">Product Image</string>
+    <string name="intentStringExtraProductExpiryDate">Product ExpiryDate</string>
+    <string name="intentStringExtraProductIsFavorite">Product IsFavorite</string>
+    <string name="intentStringExtraIsOffered">Is Offered</string>
 
     <string-array name="productstypes">
         <item>Fruits</item>

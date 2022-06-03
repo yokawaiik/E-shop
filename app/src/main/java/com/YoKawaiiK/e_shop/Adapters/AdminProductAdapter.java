@@ -16,7 +16,6 @@ import com.YoKawaiiK.e_shop.Model.AdminProduct;
 import com.YoKawaiiK.e_shop.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.Collections;
 import java.util.List;
 
 public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapter.ProductViewHolder> {
@@ -33,13 +32,11 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
 //        void onItemLongClick(int pos);
 //    }
 
-    public void setOnItemClickListener(AdminOfferAdapter.onItemClickListener listener)
-    {
+    public void setOnItemClickListener(AdminOfferAdapter.onItemClickListener listener) {
         itemListener = listener;
     }
 
-    public void setOnLongClickListener(AdminOfferAdapter.onLongClickListener listener)
-    {
+    public void setOnLongClickListener(AdminOfferAdapter.onLongClickListener listener) {
         longListener = listener;
     }
 
@@ -58,24 +55,25 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.admin_product_list , parent , false);
+        View v = LayoutInflater.from(context).inflate(R.layout.admin_product_list, parent, false);
 
-        return new ProductViewHolder(v , itemListener , longListener);
+        return new ProductViewHolder(v, itemListener, longListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        holder.cardView.setAnimation(AnimationUtils.loadAnimation(context , R.anim.fade_scale_animation));
-        holder.img.setAnimation(AnimationUtils.loadAnimation(context , R.anim.fade_transition_animation));
+        holder.cardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
+        holder.img.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition_animation));
         Picasso.get().load(adminProducts.get(position).getImage()).centerCrop().fit().into(holder.img);
         holder.name.setText(adminProducts.get(position).getName());
-        holder.category.setText("Category: "+adminProducts.get(position).getCategory());
-        holder.quantity.setText("Available Amounts: "+adminProducts.get(position).getQuantity());
-        holder.price.setText("Price: "+adminProducts.get(position).getPrice()+" EGP");
+        holder.category.setText("Category: " + adminProducts.get(position).getCategory());
+        holder.quantity.setText("Available Amounts: " + adminProducts.get(position).getQuantity());
+        holder.price.setText("Price: " + adminProducts.get(position).getPrice() + " EGP");
 
-        if(adminProducts.get(position).getExpired().equalsIgnoreCase("null"))holder.expire.setVisibility(View.GONE);
+        if (adminProducts.get(position).getExpired().equalsIgnoreCase("null"))
+            holder.expire.setVisibility(View.GONE);
         else holder.expire.setVisibility(View.VISIBLE);
-        holder.expire.setText("Expiry Date: "+adminProducts.get(position).getExpired());
+        holder.expire.setText("Expiry Date: " + adminProducts.get(position).getExpired());
 
     }
 
@@ -88,9 +86,13 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img;
-        TextView name , category , quantity , price , expire;
+        TextView name, category, quantity, price, expire;
         CardView cardView;
-        public ProductViewHolder(@NonNull View itemView, final AdminOfferAdapter.onItemClickListener itemlistener , final AdminOfferAdapter.onLongClickListener longClickListener) {
+
+        public ProductViewHolder(@NonNull View itemView,
+                                 final AdminOfferAdapter.onItemClickListener itemlistener,
+                                 final AdminOfferAdapter.onLongClickListener longClickListener
+        ) {
             super(itemView);
             img = itemView.findViewById(R.id.adapterProductImage);
             name = itemView.findViewById(R.id.AdapterProductName);
@@ -103,11 +105,9 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(itemlistener != null)
-                    {
+                    if (itemlistener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
-                        {
+                        if (position != RecyclerView.NO_POSITION) {
                             itemlistener.onItemClick(position);
                         }
                     }
@@ -117,9 +117,9 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    if(longClickListener != null){
+                    if (longClickListener != null) {
                         int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
+                        if (position != RecyclerView.NO_POSITION)
                             longClickListener.onItemLongClick(position);
                     }
                     return false;

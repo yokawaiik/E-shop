@@ -58,7 +58,9 @@ public class CategoryProductInfoAdapter extends RecyclerView.Adapter<CategoryPro
     private Context context;
     private List<CategoryProductInfo> ProductList;
 
-    public CategoryProductInfoAdapter(Context context, List<CategoryProductInfo> ProductList, RecyclerViewClickListener listener) {
+    public CategoryProductInfoAdapter(Context context,
+                                      List<CategoryProductInfo> ProductList,
+                                      RecyclerViewClickListener listener) {
         this.context = context;
         this.ProductList = ProductList;
         this.listener = listener;

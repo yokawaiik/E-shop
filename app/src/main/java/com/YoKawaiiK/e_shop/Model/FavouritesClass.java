@@ -1,52 +1,77 @@
 package com.YoKawaiiK.e_shop.Model;
 
 public class FavouritesClass {
-    public FavouritesClass() {
+
+    private String productImage;
+    private String productTitle;
+    private String productPrice;
+    private String productExpiryDate;
+    private boolean isFavorite;
+
+
+//    public FavouritesClass() {
+//    }
+
+    public FavouritesClass(
+            String productImage,
+            String productTitle,
+            String productPrice,
+            String productExpiryDate,
+            boolean isFavorite
+
+    ) {
+        this.productImage = productImage;
+        this.productTitle = productTitle;
+        this.productPrice = productPrice;
+        this.productPrice = productExpiryDate;
+        this.isFavorite = isFavorite;
     }
 
-    public FavouritesClass(String productimage, String producttitle, String productprice, boolean checked) {
-        this.productimage = productimage;
-        this.producttitle = producttitle;
-        this.productprice = productprice;
-        this.checked = checked;
+//    private String productimage;
+
+    public String getProductImage() {
+        return productImage;
     }
 
-    private String productimage;
-
-    public String getProductimage() {
-        return productimage;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
-    public void setProductimage(String productimage) {
-        this.productimage = productimage;
+
+    public String getProductExpiryDate() {
+        return productExpiryDate;
     }
 
-    public String getProducttitle() {
-        return producttitle;
+    public void setProductExpiryDate(String productExpiryDate) {
+        this.productExpiryDate = productExpiryDate;
     }
 
-    public void setProducttitle(String producttitle) {
-        this.producttitle = producttitle;
+    public String getProductTitle() {
+        return productTitle;
     }
 
-    public String getProductprice() {
-        return productprice;
+    public void setProductTitle(String productTitle) {
+        this.productTitle = productTitle;
     }
 
-    public void setProductprice(String productprice) {
-        this.productprice = productprice;
+    public String getProductPrice() {
+        return productPrice;
     }
 
-    private String producttitle;
-    private String productprice;
-
-    public boolean isChecked() {
-        return checked;
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+//    private String producttitle;
+//    private String productprice;
+
+    public boolean isFavorite() {
+        return isFavorite;
     }
 
-    private boolean checked;
+    public void setIsFavorite(boolean IsFavorite) {
+        this.isFavorite = IsFavorite;
+    }
+
+//    private boolean checked;
 }

@@ -74,12 +74,13 @@ public class ProductInfoActivity extends AppCompatActivity implements Navigation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //have sending data
-        ProductName = getIntent().getStringExtra(getString(R.string.piaListItemProductName));
-        ProductPrice = getIntent().getStringExtra(getString(R.string.piaListItemProductPrice));
-        ProductImage = getIntent().getStringExtra(getString(R.string.piaListItemProductImage));
-        ProductNExpiryDate = getIntent().getStringExtra(getString(R.string.piaListItemProductExpiryDate));
-        ProductIsFavorite = getIntent().getStringExtra(getString(R.string.piaListItemProductIsFavorite));
-        IsOffered = getIntent().getStringExtra(getString(R.string.piaListItemProductIsOffered));
+//        todo: error here
+        ProductName= getIntent().getStringExtra(getString(R.string.intentStringExtraProductName));
+        ProductPrice= getIntent().getStringExtra(getString(R.string.intentStringExtraProductPrice));
+        ProductImage= getIntent().getStringExtra(getString(R.string.intentStringExtraProductImage));
+        ProductNExpiryDate= getIntent().getStringExtra(getString(R.string.intentStringExtraProductExpiryDate));
+        ProductIsFavorite= getIntent().getStringExtra(getString(R.string.intentStringExtraProductIsFavorite));
+        IsOffered = getIntent().getStringExtra(getString(R.string.intentStringExtraIsOffered));
 
         // define xml data
         DefineXmlViews();

@@ -10,43 +10,53 @@
 
     <ImageView
         android:id="@+id/PrImage"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/PrName"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@id/PrImage"
-        android:text=""
         android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text=""
+        android:textAlignment="textStart"
+        android:textColor="#000"
         android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="#000"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/PrPrice"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@id/PrName"
-        android:text=""
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:textSize="18dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text=""
+        android:textAlignment="textStart"
         android:textColor="#000"
-        android:layout_marginTop="15dp"/>
+        android:textSize="18dp" />
 
     <TextView
         android:id="@+id/PrExpiryDate"
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:layout_below="@id/PrPrice"
-        android:text=""
-        android:gravity="center"
-        android:textSize="18dp"
-        android:textColor="#000"
         android:layout_marginTop="15dp"
-        android:visibility="invisible"/>
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text=""
+        android:textAlignment="textStart"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:visibility="invisible" />
 
 
     <ImageView
